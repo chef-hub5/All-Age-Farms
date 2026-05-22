@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Age Farms</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        forest: '#1a3a2a',
+        gold: '#c8860a',
+        cream: '#fdf8f0',
+        bark: '#3d2b1f',
+        sage: '#5a7a5a'
+      },
+      fontFamily: {
+        display: ['Playfair Display', 'serif'],
+        body: ['DM Sans', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+  <style>
+html, body { height: 100%; margin: 0; }
+.app-wrapper { height: 100%; overflow-y: auto; overflow-x: hidden; }
+.carousel-slide { transition: opacity 0.8s ease; }
+.utility-scroll::-webkit-scrollbar { display: none; }
+.utility-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.product-card img { object-fit: cover; width: 100%; height: 100%; }
+.page { display: none; }
+.page.active { display: block; }
+.cart-badge { position: absolute; top: -6px; right: -6px; background: #c8860a; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+.toast { position: fixed; bottom: 20px; right: 20px; background: #1a3a2a; color: white; padding: 12px 20px; border-radius: 8px; z-index: 9999; transform: translateY(100px); opacity: 0; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.copy-btn { transition: all 0.2s ease; }
+.copy-btn:hover { background: #c8860a; }
+.tiktok-icon { width: 1em; height: 1em; display: inline-block; }
+textarea, input, select { max-width: 100%; word-wrap: break-word; }
+.bg-white { word-break: break-word; }
+@media (max-width: 640px) {
+  h1, h2, h3, h4 { word-break: break-word; }
+  p { word-break: break-word; }
+  .flex { flex-wrap: wrap; }
+}
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-cream font-body">
+  <div class="app-wrapper"><!-- Utility Header -->
+   <div class="bg-forest text-white py-2 text-xs md:text-sm font-medium tracking-wide">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between flex-wrap gap-2">
+     <div class="flex-1 text-center md:text-left">
+      <i data-lucide="truck" class="inline w-3.5 h-3.5 mr-1"></i> FREE DELIVERY on orders above ₦100,000 | Lagos &amp; Nationwide
+     </div>
+     <div class="flex gap-3">
+      <button onclick="navigate('help')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i>Help</button> <button onclick="navigate('track')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="package" class="w-3.5 h-3.5"></i>Track Order</button>
+     </div>
+    </div>
+   </div><!-- Main Header -->
+   <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')"><img src="https://placehold.co/48x48/1a3a2a/c8860a?text=AAF" alt="All Age Farms Logo" class="w-10 h-10 rounded-full" id="logo-img" loading="lazy">
+      <div>
+       <h1 class="font-display font-bold text-forest text-lg leading-tight" id="site-title">All Age Farms</h1>
+       <p class="text-[10px] text-sage tracking-widest uppercase">Premium Smoked Protein</p>
+      </div>
+     </div>
+     <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-bark"><a onclick="navigate('home')" class="cursor-pointer hover:text-gold transition">Home</a> <a onclick="navigate('products')" class="cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="cursor-pointer hover:text-gold transition">About</a> <a onclick="navigate('contact')" class="cursor-pointer hover:text-gold transition">Contact</a>
+     </nav>
+     <div class="flex items-center gap-4">
+      <div class="hidden md:flex items-center bg-cream rounded-full px-4 py-2 gap-2 flex-1 max-w-xs"><i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
+      </div><button class="md:hidden p-2 hover:bg-cream rounded-full transition" onclick="toggleSearch()"> <i data-lucide="search" class="w-5 h-5 text-bark"></i> </button> <button onclick="navigate('cart')" class="relative p-2 hover:bg-cream rounded-full transition"> <i data-lucide="shopping-cart" class="w-5 h-5 text-bark"></i> <span class="cart-badge hidden" id="cart-count">0</span> </button> <button class="md:hidden p-2" onclick="toggleMobileMenu()"> <i data-lucide="menu" class="w-6 h-6 text-bark"></i> </button>
+     </div>
+    </div><!-- Mobile Search -->
+    <div id="mobile-search" class="hidden md:hidden bg-white border-b px-4 py-2">
+     <div class="flex items-center bg-cream rounded-full px-4 py-2 gap-2"><i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="mobile-search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 py-3"><a onclick="navigate('home');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Home</a> <a onclick="navigate('products');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Products</a> <a onclick="navigate('about');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">About</a> <a onclick="navigate('contact');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Contact</a>
+    </div>
+   </header><!-- Category Utility Bar -->
+   <div class="bg-bark sticky top-[68px] z-40 shadow">
+    <div class="max-w-7xl mx-auto flex items-center">
+     <div class="utility-scroll flex overflow-x-auto py-2 px-4 gap-1 flex-1"><button onclick="filterCategory('all')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-gold text-white transition cursor-pointer">All</button> <button onclick="filterCategory('stockfish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Stock Fish</button> <button onclick="filterCategory('cutlets')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Cutlets/Chunks</button> <button onclick="filterCategory('panla')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Panla Fish</button> <button onclick="filterCategory('meat')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Goat Meat</button> <button onclick="filterCategory('beef')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Beef</button> <button onclick="filterCategory('snails')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Snails</button> <button onclick="filterCategory('flour')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Flour/Pap</button> <button onclick="navigate('categories')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-gold border border-gold hover:bg-gold hover:text-white transition cursor-pointer">More ➜</button>
+     </div>
+    </div>
+   </div><!-- ===== HOME PAGE ===== -->
+   <div id="page-home" class="page active"><!-- Hero Carousel -->
+    <section class="relative h-[400px] md:h-[500px] overflow-hidden">
+     <div id="carousel" class="relative w-full h-full">
+      <div class="carousel-slide absolute inset-0 opacity-100" id="slide-0"><img src="https://placehold.co/1200x500/3d2b1f/fdf8f0?text=Premium+Smoked+Catfish" alt="Smoked Catfish" class="w-full h-full object-cover" id="hero-img-1" loading="lazy">
+       <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
+        <div class="px-8 md:px-16 max-w-xl">
+         <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h1">Premium Smoked Catfish</h2>
+         <p class="text-cream/90 text-sm md:text-base mb-5">Hygienically processed, traditionally smoked. From our facility to your kitchen.</p><button onclick="navigate('products')" class="bg-gold text-white px-6 py-2.5 rounded-full font-medium hover:bg-gold/90 transition">Shop Now</button>
+        </div>
+       </div>
+      </div>
+      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-1"><img src="https://placehold.co/1200x500/5a7a5a/fdf8f0?text=Fresh+Goat+Meat+%26+Beef" alt="Goat Meat &amp; Beef" class="w-full h-full object-cover" id="hero-img-2" loading="lazy">
+       <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
+        <div class="px-8 md:px-16 max-w-xl">
+         <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h2">Fresh Goat Meat &amp; Beef</h2>
+         <p class="text-cream/90 text-sm md:text-base mb-5">Freshly processed, properly smoked, ready to cook. Quality you can taste.</p><button onclick="navigate('products')" class="bg-gold text-white px-6 py-2.5 rounded-full font-medium hover:bg-gold/90 transition">Shop Now</button>
+        </div>
+       </div>
+      </div>
+      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-2"><img src="https://placehold.co/1200x500/c8860a/fdf8f0?text=Export+Quality+Products" alt="Export Quality" class="w-full h-full object-cover" id="hero-img-3" loading="lazy">
+       <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
+        <div class="px-8 md:px-16 max-w-xl">
+         <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h3">Export Quality Products</h2>
+         <p class="text-cream/90 text-sm md:text-base mb-5">Meeting global food safety standards. Serving Nigeria, West Africa &amp; beyond.</p><button onclick="navigate('products')" class="bg-gold text-white px-6 py-2.5 rounded-full font-medium hover:bg-gold/90 transition">Shop Now</button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"><button onclick="goToSlide(0)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="0"></button> <button onclick="goToSlide(1)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="1"></button> <button onclick="goToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="2"></button>
+     </div>
+    </section><!-- Featured Products -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+     <h3 class="font-display text-2xl md:text-3xl font-bold text-forest mb-8 text-center">Our Products</h3>
+     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="home-products"></div>
+     <div class="text-center mt-8"><button onclick="navigate('products')" class="border-2 border-forest text-forest px-8 py-2.5 rounded-full font-medium hover:bg-forest hover:text-white transition">View All Products</button>
+     </div>
+    </section><!-- Why Choose Us -->
+    <section class="bg-forest py-12">
+     <div class="max-w-7xl mx-auto px-4 text-center">
+      <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-8">Why All Age Farms?</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="shield-check" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+        <h4 class="text-white font-bold mb-1">Hygiene First</h4>
+        <p class="text-cream/70 text-sm">Strict food safety from processing to packaging</p>
+       </div>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="award" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+        <h4 class="text-white font-bold mb-1">Consistent Quality</h4>
+        <p class="text-cream/70 text-sm">Same great product every single time</p>
+       </div>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="truck" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+        <h4 class="text-white font-bold mb-1">Fast Delivery</h4>
+        <p class="text-cream/70 text-sm">Lagos, Nationwide &amp; Export shipping</p>
+       </div>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="heart" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+        <h4 class="text-white font-bold mb-1">Traditional Taste</h4>
+        <p class="text-cream/70 text-sm">Authentic Nigerian smoking methods</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== PRODUCTS PAGE ===== -->
+   <div id="page-products" class="page">
+    <section class="max-w-7xl mx-auto px-4 py-8">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Our Products</h2>
+     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="all-products"></div>
+    </section>
+   </div><!-- ===== CATEGORIES PAGE ===== -->
+   <div id="page-categories" class="page">
+    <section class="max-w-7xl mx-auto px-4 py-8">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">All Categories</h2>
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="categories-grid"></div>
+    </section>
+   </div><!-- ===== ABOUT PAGE ===== -->
+   <div id="page-about" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">About All Age Farms</h2>
+     <div class="bg-white rounded-2xl overflow-hidden shadow-sm mb-6"><img src="https://placehold.co/800x400/5a7a5a/fdf8f0?text=All+Age+Farms+Facility" alt="All Age Farms Facility" class="w-full h-64 object-cover" loading="lazy">
+     </div>
+     <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm space-y-6 text-bark leading-relaxed">
+      <div>
+       <h3 class="font-display text-xl font-bold text-forest mb-3">Company History</h3>
+       <p><strong>All-Age Farms was registered in 2023</strong> with one goal: to solve the trust problem in Nigeria's smoked protein market.</p>
+       <p class="mt-3">We started this business seeing how much good smoked fish and meat was wasted or rejected because of poor hygiene, sand, and inconsistent quality. In Lagos kitchens and export containers alike, customers were paying for "clean" but getting stress.</p>
+       <p class="mt-3">So we built All-Age Farms differently. From day one, we invested in a controlled processing facility, trained our staff on food safety standards, and got a drying system that dries products slowly and keeps products fresh longer without chemicals.</p>
+       <p class="mt-3">What started as a small Lagos operation serving families has grown into a trusted supplier for restaurants, food distributors, and export clients across Nigeria and West Africa. Today, All-Age Farms is known for one thing: <strong>clean, consistent, traditionally and properly smoked protein that meets global standards</strong>.</p>
+      </div>
+      <div>
+       <h3 class="font-display text-xl font-bold text-forest mb-3">Our Mission</h3>
+       <p><strong>To provide safe, hygienic, and consistently high-quality smoked and dried protein to homes, restaurants, and export markets — while preserving the authentic Nigerian taste that people love.</strong></p>
+       <p class="mt-3">We don't just sell food. We deliver peace of mind with every pack.</p>
+      </div>
+      <div>
+       <h3 class="font-display text-xl font-bold text-forest mb-3">Our Values</h3>
+       <div class="space-y-4">
+        <div class="border-l-4 border-gold pl-4">
+         <h4 class="font-bold">1. Cleanliness First</h4>
+         <p class="text-sm mt-1">Hygiene isn't optional for us. From processing to packaging, every step meets strict food safety standards because what we produce ends up in someone's pot.</p>
+        </div>
+        <div class="border-l-4 border-gold pl-4">
+         <h4 class="font-bold">2. Tradition with Integrity</h4>
+         <p class="text-sm mt-1">We respect the traditional smoking methods that give Nigerian food its unique flavor. But we combine it with modern standards so you get both taste and safety.</p>
+        </div>
+        <div class="border-l-4 border-gold pl-4">
+         <h4 class="font-bold">3. Consistency You Can Trust</h4>
+         <p class="text-sm mt-1">Whether you're ordering 2kg or 200kg, your product will look, taste, and arrive the same way. No surprises.</p>
+        </div>
+        <div class="border-l-4 border-gold pl-4">
+         <h4 class="font-bold">4. Customer Respect</h4>
+         <p class="text-sm mt-1">We treat every order like it's for our own family. That means honest communication, fair pricing, and on-time delivery.</p>
+        </div>
+        <div class="border-l-4 border-gold pl-4">
+         <h4 class="font-bold">5. Rooted, Not Stuck</h4>
+         <p class="text-sm mt-1">We honor our Nigerian roots while staying open to global standards and export opportunities. That's how we serve both local and international customers.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== CONTACT PAGE ===== -->
+   <div id="page-contact" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Contact Us</h2>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl p-6 shadow-sm space-y-4">
+       <div>
+        <h3 class="font-bold text-forest mb-2 flex items-center gap-2"><i data-lucide="mail" class="w-5 h-5 text-gold"></i>Email</h3>
+        <p class="text-bark" id="contact-email">allagefarmsltd@gmail.com </p>
+       </div>
+       <div>
+        <h3 class="font-bold text-forest mb-2 flex items-center gap-2"><i data-lucide="phone" class="w-5 h-5 text-gold"></i>Phone</h3>
+        <p class="text-bark" id="contact-phone">+2348134488089</p>
+       </div>
+       <div>
+        <h3 class="font-bold text-forest mb-2 flex items-center gap-2"><i data-lucide="message-circle" class="w-5 h-5 text-gold"></i>WhatsApp</h3>
+        <p class="text-bark" id="contact-whatsapp">+2348134488089</p>
+       </div>
+       <div>
+        <h3 class="font-bold text-forest mb-3">Business Hours</h3>
+        <p class="text-bark text-sm">Monday - Friday: 9:00 AM - 5:00 PM</p>
+        <p class="text-bark text-sm">Saturday: 10:00 AM - 3:00 PM</p>
+        <p class="text-bark text-sm">Sunday: Closed</p>
+       </div>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-4">Send us a Message</h3>
+       <form id="contact-form" onsubmit="submitContactForm(event)" class="space-y-3">
+        <div><label class="text-sm text-bark font-medium">Name *</label> <input id="contact-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your name" required>
+        </div>
+        <div><label class="text-sm text-bark font-medium">Email *</label> <input id="contact-email-input" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your email" required>
+        </div>
+        <div><label class="text-sm text-bark font-medium">Phone Number *</label> <input id="contact-phone-input" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your phone number" required>
+        </div>
+        <div><label class="text-sm text-bark font-medium">Address *</label> <textarea id="contact-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="2" placeholder="Your address" required></textarea>
+        </div>
+        <div><label class="text-sm text-bark font-medium">Message *</label> <textarea id="contact-message" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="4" placeholder="Your message" required></textarea>
+        </div><button type="submit" id="contact-submit-btn" class="w-full bg-forest text-white py-2 rounded-full font-medium hover:bg-forest/90 transition">Send Message</button>
+       </form>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== HELP PAGE ===== -->
+   <div id="page-help" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Help &amp; FAQs</h2>
+     <div class="space-y-4">
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="help-circle" class="w-5 h-5 inline mr-2 text-gold"></i>How do I place an order?</h3>
+       <p class="text-bark text-sm">Browse our products, add them to your cart, and proceed to checkout. Fill in your delivery details and choose your preferred payment method.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="truck" class="w-5 h-5 inline mr-2 text-gold"></i>What are your delivery options?</h3>
+       <p class="text-bark text-sm"><strong>Lagos:</strong> ₦2,500 - ₦8,000 depending on location. Free on orders above ₦100,000</p>
+       <p class="text-bark text-sm"><strong>Outside Lagos:</strong> Waybill ₦3,000 - ₦10,000. Free on orders above ₦100,000</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="credit-card" class="w-5 h-5 inline mr-2 text-gold"></i>What payment methods do you accept?</h3>
+       <p class="text-bark text-sm">We accept Bank Transfer, Pay On Delivery (POD - Lagos only), and WhatsApp Payment. Details are provided at checkout.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="refresh-cw" class="w-5 h-5 inline mr-2 text-gold"></i>What is your return policy?</h3>
+       <p class="text-bark text-sm">If your order arrives damaged or not as described, contact us within 24 hours with a photo and we will replace or refund immediately.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="package" class="w-5 h-5 inline mr-2 text-gold"></i>How long does delivery take?</h3>
+       <p class="text-bark text-sm">Lagos orders typically arrive within 2-3 business days. Outside Lagos, delivery depends on the shipping method and location, usually 5-10 business days.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <h3 class="font-bold text-forest mb-2"><i data-lucide="shield-check" class="w-5 h-5 inline mr-2 text-gold"></i>Are your products safe?</h3>
+       <p class="text-bark text-sm">Yes! All our products are hygienically processed, inspected, and packaged according to strict food safety standards. We meet global export quality requirements.</p>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== TRACK ORDER PAGE ===== -->
+   <div id="page-track" class="page">
+    <section class="max-w-2xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Track Your Order</h2>
+     <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+      <p class="text-bark mb-6">Select how you'd like to track your order:</p>
+      <div class="space-y-3"><button onclick="trackViaEmail()" class="w-full bg-forest text-white py-3 rounded-full font-medium hover:bg-forest/90 transition flex items-center justify-center gap-2"> <i data-lucide="mail" class="w-5 h-5"></i> Track via Email </button> <button onclick="trackViaWhatsApp()" class="w-full bg-green-600 text-white py-3 rounded-full font-medium hover:bg-green-700 transition flex items-center justify-center gap-2"> <i data-lucide="message-circle" class="w-5 h-5"></i> Track via WhatsApp </button>
+      </div>
+      <p class="text-bark/60 text-sm mt-6">We'll help you find your order details and provide updates on your delivery status.</p>
+     </div>
+    </section>
+   </div><!-- ===== SHIPPING PAGE ===== -->
+   <div id="page-shipping" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Shipping Rates</h2>
+     <div class="space-y-4">
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="map-pin" class="w-6 h-6 text-gold"></i>
+        <h3 class="font-bold text-lg text-forest">Lagos Delivery</h3>
+       </div>
+       <p class="text-bark">₦2,500 – ₦8,000 depending on location.</p>
+       <p class="text-gold font-bold mt-2">FREE delivery for orders above ₦100,000</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="truck" class="w-6 h-6 text-gold"></i>
+        <h3 class="font-bold text-lg text-forest">Outside Lagos (Nationwide)</h3>
+       </div>
+       <p class="text-bark">Waybill: ₦3,000 – ₦10,000 depending on location, quantity and weight of items.</p>
+       <p class="text-gold font-bold mt-2">FREE delivery for orders above ₦100,000</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+       <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="globe" class="w-6 h-6 text-gold"></i>
+        <h3 class="font-bold text-lg text-forest">Export (International)</h3>
+       </div>
+       <p class="text-bark">On request via WhatsApp. Contact us for custom quotes.</p>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== CART PAGE ===== -->
+   <div id="page-cart" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Your Cart</h2>
+     <div id="cart-items" class="space-y-3"></div>
+     <div id="cart-empty" class="text-center py-12 text-bark/60"><i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
+      <p>Your cart is empty</p>
+     </div>
+     <div id="cart-summary" class="hidden mt-6 bg-white rounded-xl p-6 shadow-sm">
+      <div class="flex justify-between text-lg font-bold text-forest mb-4"><span>Total:</span><span id="cart-total">₦0</span>
+      </div><button onclick="navigate('checkout')" class="w-full bg-gold text-white py-3 rounded-full font-bold hover:bg-gold/90 transition">Proceed to Checkout</button>
+     </div>
+    </section>
+   </div><!-- ===== CHECKOUT PAGE ===== -->
+   <div id="page-checkout" class="page">
+    <section class="max-w-5xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Checkout</h2>
+     <div id="order-confirmation" class="hidden bg-green-50 border-2 border-green-500 rounded-xl p-6 mb-6 text-center"><i data-lucide="check-circle" class="w-12 h-12 text-green-600 mx-auto mb-3"></i>
+      <h3 class="font-bold text-green-700 text-lg mb-2">Order Placed Successfully! 🎉</h3>
+      <p class="text-green-600 mb-4" id="confirmation-message"></p><button onclick="navigate('home')" class="bg-green-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition">Continue Shopping</button>
+     </div>
+     <div id="checkout-form-section" class="grid md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 space-y-6"><!-- Delivery Information -->
+       <div class="bg-white rounded-xl p-6 shadow-sm">
+        <h3 class="font-bold text-forest mb-4 flex items-center gap-2"><i data-lucide="truck" class="w-5 h-5 text-gold"></i>Delivery Information</h3>
+        <form id="checkout-form" onsubmit="return false;" class="space-y-3">
+         <div>
+          <label for="co-name" class="text-sm text-bark font-medium">Full Name *</label><input id="co-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         </div>
+         <div>
+          <label for="co-phone" class="text-sm text-bark font-medium">Phone Number *</label><input id="co-phone" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         </div>
+         <div>
+          <label for="co-email" class="text-sm text-bark font-medium">Email Address *</label><input id="co-email" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         </div>
+         <div>
+          <label for="co-state" class="text-sm text-bark font-medium">State *</label> <select id="co-state" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" onchange="updateShippingFee()" required> <option value="">-- Select State --</option> <option value="Lagos">Lagos</option> <option value="Abia">Abia</option> <option value="Adamawa">Adamawa</option> <option value="Akwa Ibom">Akwa Ibom</option> <option value="Anambra">Anambra</option> <option value="Bauchi">Bauchi</option> <option value="Bayelsa">Bayelsa</option> <option value="Benue">Benue</option> <option value="Borno">Borno</option> <option value="Cross River">Cross River</option> <option value="Delta">Delta</option> <option value="Ebonyi">Ebonyi</option> <option value="Edo">Edo</option> <option value="Ekiti">Ekiti</option> <option value="Enugu">Enugu</option> <option value="Gombe">Gombe</option> <option value="Imo">Imo</option> <option value="Jigawa">Jigawa</option> <option value="Kaduna">Kaduna</option> <option value="Kano">Kano</option> <option value="Katsina">Katsina</option> <option value="Kebbi">Kebbi</option> <option value="Kogi">Kogi</option> <option value="Kwara">Kwara</option> <option value="Nasarawa">Nasarawa</option> <option value="Niger">Niger</option> <option value="Ogun">Ogun</option> <option value="Ondo">Ondo</option> <option value="Osun">Osun</option> <option value="Oyo">Oyo</option> <option value="Plateau">Plateau</option> <option value="Rivers">Rivers</option> <option value="Sokoto">Sokoto</option> <option value="Taraba">Taraba</option> <option value="Yobe">Yobe</option> <option value="Zamfara">Zamfara</option> <option value="FCT Abuja">FCT Abuja</option> </select>
+         </div>
+         <div>
+          <label for="co-address" class="text-sm text-bark font-medium">Delivery Address *</label><textarea id="co-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="3" required></textarea>
+         </div>
+        </form>
+       </div><!-- Payment Methods -->
+       <div class="bg-white rounded-xl p-6 shadow-sm">
+        <h3 class="font-bold text-forest mb-4 flex items-center gap-2"><i data-lucide="credit-card" class="w-5 h-5 text-gold"></i>Payment Method</h3>
+        <div id="payment-methods" class="space-y-3"></div>
+       </div><!-- Terms & Conditions -->
+       <div class="bg-white rounded-xl p-6 shadow-sm"><label class="flex items-start gap-3 cursor-pointer"> <input id="terms-agree" type="checkbox" class="accent-gold mt-1" required>
+         <div class="flex-1">
+          <p class="text-sm text-bark font-medium">I agree to the Terms of Service and Return Policy</p>
+          <p class="text-xs text-bark/60 mt-1">Our Terms of Service outline order policies, processing times, and terms. Our Return Policy states that damaged or incorrect orders can be replaced or refunded within 24 hours of delivery.</p>
+         </div></label>
+       </div>
+      </div><!-- Order Summary -->
+      <div class="md:col-span-1">
+       <div class="bg-white rounded-xl p-6 shadow-sm sticky top-24 space-y-4">
+        <h3 class="font-bold text-forest">Order Summary</h3>
+        <div id="checkout-items" class="space-y-2 text-sm text-bark border-b pb-3"></div>
+        <div class="space-y-2 text-sm">
+         <div class="flex justify-between">
+          <span class="text-bark/70">Subtotal:</span><span id="checkout-subtotal" class="font-medium">₦0</span>
+         </div>
+         <div class="flex justify-between">
+          <span class="text-bark/70">Shipping:</span><span id="checkout-shipping" class="font-medium">₦0</span>
+         </div>
+        </div>
+        <div class="border-t pt-3 flex justify-between text-lg font-bold text-forest"><span>Total:</span><span id="checkout-total">₦0</span>
+        </div><button onclick="placeOrder()" class="w-full bg-forest text-white py-3 rounded-full font-bold hover:bg-forest/90 transition flex items-center justify-center gap-2" id="place-order-btn"> <i data-lucide="check" class="w-5 h-5"></i> Place Order </button>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- Footer -->
+   <footer class="bg-forest text-cream/80 mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div>
+      <h4 class="font-display text-lg font-bold text-white mb-3">All Age Farms</h4>
+      <p class="text-sm">Premium smoked &amp; dried protein. Registered 2023. Serving homes, restaurants &amp; export markets.</p>
+      <div class="flex gap-3 mt-4"><a href="https://www.instagram.com/allage_farms?igsh=MXhlbmhwanllZHRyNQ==" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition"><i data-lucide="instagram" class="w-4 h-4 text-white"></i></a> <a href="https://www.tiktok.com/@allage_farms?_r=1&_t=ZS-968wFssiaMn" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition">
+        <svg class="w-4 h-4 text-white" viewbox="0 0 24 24" fill="currentColor">
+         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v13.67a2.4 2.4 0 1 1-4.77-1.42v-3.88a6.67 6.67 0 1 0 8.82 7.64V9.24a8.05 8.05 0 0 0 3.4.6v-3.15" />
+        </svg></a> <a href="https://www.facebook.com/share/14fBmnkhczi/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition"><i data-lucide="facebook" class="w-4 h-4 text-white"></i></a>
+      </div>
+     </div>
+     <div>
+      <h4 class="font-bold text-white mb-3">Quick Links</h4>
+      <div class="space-y-1.5 text-sm"><a onclick="navigate('products')" class="block cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="block cursor-pointer hover:text-gold transition">About Us</a> <a onclick="navigate('contact')" class="block cursor-pointer hover:text-gold transition">Contact</a> <a onclick="navigate('help')" class="block cursor-pointer hover:text-gold transition">Help &amp; FAQs</a>
+      </div>
+     </div>
+     <div>
+      <h4 class="font-bold text-white mb-3">Contact Info</h4>
+      <p class="text-sm">Premium smoked protein for homes, restaurants &amp; export.</p>
+      <p class="text-sm mt-2 text-gold">WhatsApp: <a href="https://wa.me/08134488089" target="_blank" rel="noopener noreferrer" class="hover:text-white transition" id="whatsapp-link">+234</a></p>
+     </div>
+    </div>
+    <div class="border-t border-white/10 py-4 text-center text-xs text-cream/50">
+     © 2024 All Age Farms. All rights reserved. | <a href="https://chef-hub5.github.io/portfolio/" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition cursor-pointer">JamesDev</a>
+    </div>
+   </footer>
+  </div><!-- Toast -->
+  <div id="toast" class="toast"></div>
+  <script>
+// Products data
+const products = [
+  { id: 1, name: '500g stockfish ears', category: 'stock fish', price: 5500, unit: '500 g', img: 'Stock Fish/500g stock fish ears.jpeg' },
+  { id: 2, name: '500g stockfish Apama heads', category: 'stock fish', price: 10000, unit: '500 g', img: 'Stock Fish/500g stock fish head.jpeg' },
+  { id: 3, name: 'Smoked Catfish (Large)', category: 'catfish', price: 9000, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Catfish+Large' },
+  { id: 4, name: 'Smoked Catfish (Jumbo)', category: 'catfish', price: 12000, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Catfish+Jumbo' },
+  { id: 5, name: 'Oven Dried Catfish (Small)', category: 'catfish', price: 6000, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+S' },
+  { id: 6, name: 'Oven Dried Catfish (Medium)', category: 'catfish', price: 7500, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+M' },
+  { id: 7, name: 'Oven Dried Catfish (Large)', category: 'catfish', price: 9500, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+L' },
+  { id: 8, name: 'Cutlets / Chunks', category: 'cutlets', price: 6500, unit: 'per kg', img: 'https://placehold.co/400x400/c8860a/fdf8f0?text=Cutlets' },
+  { id: 9, name: 'Smoked Panla Fish', category: 'panla', price: 5000, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Smoked+Panla' },
+  { id: 10, name: 'Semi Dried Panla Fish', category: 'panla', price: 4500, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Semi+Dried+Panla' },
+  { id: 11, name: 'Panla Fillets', category: 'panla', price: 6000, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Panla+Fillets' },
+  { id: 12, name: 'Goat Meat (Smoked)', category: 'meat', price: 8500, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Goat+Meat' },
+  { id: 13, name: 'Beef (Smoked)', category: 'beef', price: 7500, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Beef' },
+  { id: 14, name: 'Snails (Smoked)', category: 'snails', price: 10000, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Snails' },
+  { id: 15, name: 'Flour Dried Pap', category: 'flour', price: 3500, unit: 'per kg', img: 'https://placehold.co/400x400/c8860a/fdf8f0?text=Dried+Pap' },
+];
+
+const categories = [
+  { id: 'stock fish', name: 'stock fish', img: 'Stock Fish/500g stock fish ears.jpeg' },
+  { id: 'cutlets', name: 'Cutlets / Chunks', img: 'https://placehold.co/400x300/c8860a/fdf8f0?text=Cutlets' },
+  { id: 'panla', name: 'Panla Fish', img: 'https://placehold.co/400x300/1a3a2a/fdf8f0?text=Panla' },
+  { id: 'meat', name: 'Goat Meat', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Goat+Meat' },
+  { id: 'beef', name: 'Beef', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Beef' },
+  { id: 'snails', name: 'Snails', img: 'https://placehold.co/400x300/5a7a5a/fdf8f0?text=Snails' },
+  { id: 'flour', name: 'Flour / Dried Pap', img: 'https://placehold.co/400x300/c8860a/fdf8f0?text=Flour+Pap' },
+];
+
+let cart = [];
+let currentSlide = 0;
+let currentFilter = 'all';
+
+// Load cart from localStorage
+function loadCart() {
+  const saved = localStorage.getItem('allAgeFarmsCart');
+  if (saved) {
+    try {
+      cart = JSON.parse(saved);
+      updateCartBadge();
+    } catch (e) {
+      cart = [];
+    }
+  }
+}
+
+// Save cart to localStorage
+function saveCart() {
+  localStorage.setItem('allAgeFarmsCart', JSON.stringify(cart));
+}
+
+// Navigation
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  document.querySelector('.app-wrapper').scrollTop = 0;
+  if (page === 'products') renderProducts();
+  if (page === 'cart') renderCart();
+  if (page === 'checkout') renderCheckout();
+  if (page === 'categories') renderCategories();
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+
+function toggleSearch() {
+  document.getElementById('mobile-search').classList.toggle('hidden');
+}
+
+function searchProducts() {
+  const searchInput = document.getElementById('search-input');
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+  const query = (searchInput?.value || mobileSearchInput?.value || '').toLowerCase();
+  const filtered = query ? products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)) : products;
+  
+  // Update all product containers
+  const homeContainer = document.getElementById('home-products');
+  const allContainer = document.getElementById('all-products');
+  
+  if (homeContainer && document.getElementById('page-home').classList.contains('active')) {
+    homeContainer.innerHTML = filtered.slice(0, 8).map(createProductCard).join('');
+  }
+  if (allContainer && document.getElementById('page-products').classList.contains('active')) {
+    allContainer.innerHTML = filtered.map(createProductCard).join('');
+  }
+  lucide.createIcons();
+}
+
+// Product rendering
+function createProductCard(p) {
+  return `<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group" data-category="${p.category}">
+    <div class="aspect-square overflow-hidden"><img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy"></div>
+    <div class="p-3">
+      <h4 class="font-medium text-bark text-sm leading-tight">${p.name}</h4>
+      <p class="text-gold font-bold mt-1">₦${p.price.toLocaleString()} <span class="text-xs text-bark/50 font-normal">${p.unit}</span></p>
+      <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-forest text-white text-xs py-2 rounded-full font-medium hover:bg-forest/90 transition">Add to Cart</button>
+    </div>
+  </div>`;
+}
+
+function renderProducts() {
+  const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+  document.getElementById('all-products').innerHTML = filtered.map(createProductCard).join('');
+  lucide.createIcons();
+}
+
+function renderHomeProducts() {
+  document.getElementById('home-products').innerHTML = products.slice(0, 8).map(createProductCard).join('');
+}
+
+function renderCategories() {
+  document.getElementById('categories-grid').innerHTML = categories.map(c => `
+    <div onclick="filterCategory('${c.id}');navigate('products')" class="cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+      <div class="aspect-video overflow-hidden"><img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover" loading="lazy"></div>
+      <div class="p-4"><h4 class="font-bold text-forest">${c.name}</h4><p class="text-xs text-bark/60 mt-1">${products.filter(p=>p.category===c.id).length} products</p></div>
+    </div>
+  `).join('');
+}
+
+// Category filter
+function filterCategory(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => { b.classList.remove('bg-gold','text-white'); b.classList.add('text-cream/80'); });
+  if (event && event.currentTarget) { event.currentTarget.classList.add('bg-gold','text-white'); event.currentTarget.classList.remove('text-cream/80'); }
+  navigate('products');
+}
+
+// Cart
+function addToCart(id) {
+  const existing = cart.find(i => i.id === id);
+  if (existing) { existing.qty++; } else { cart.push({ id, qty: 1 }); }
+  saveCart();
+  updateCartBadge();
+  showToast('Added to cart!');
+}
+
+function removeFromCart(id) { 
+  cart = cart.filter(i => i.id !== id); 
+  saveCart();
+  updateCartBadge(); 
+  renderCart(); 
+}
+
+function updateCartBadge() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cart-count');
+  if (count > 0) {
+    badge.textContent = count;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function getCartTotal() { return cart.reduce((s, i) => { const p = products.find(x => x.id === i.id); return s + (p ? p.price * i.qty : 0); }, 0); }
+
+function renderCart() {
+  if (cart.length === 0) {
+    document.getElementById('cart-items').innerHTML = '';
+    document.getElementById('cart-empty').classList.remove('hidden');
+    document.getElementById('cart-summary').classList.add('hidden');
+    return;
+  }
+  document.getElementById('cart-empty').classList.add('hidden');
+  document.getElementById('cart-summary').classList.remove('hidden');
+  
+  const validItems = cart.filter(i => {
+    const p = products.find(x => x.id === i.id);
+    return p !== undefined;
+  });
+  
+  document.getElementById('cart-items').innerHTML = validItems.map(i => {
+    const p = products.find(x => x.id === i.id);
+    const itemTotal = p.price * i.qty;
+    return `<div class="bg-white rounded-lg p-4 shadow-sm">
+      <div class="flex gap-4 mb-3">
+        <img src="${p.img}" alt="${p.name}" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" loading="lazy">
+        <div class="flex-1 min-w-0">
+          <h4 class="font-medium text-bark text-sm leading-tight">${p.name}</h4>
+          <p class="text-gold font-bold text-sm mt-1">₦${p.price.toLocaleString()} per ${p.unit.split(' ')[1]}</p>
+          <p class="text-bark/60 text-xs mt-1">Item Total: ₦${itemTotal.toLocaleString()}</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 bg-cream rounded-full p-1">
+          <button onclick="changeQty(${i.id},-1)" class="w-7 h-7 rounded-full flex items-center justify-center text-bark font-bold hover:bg-gold hover:text-white transition">−</button>
+          <span class="text-sm font-medium w-5 text-center">${i.qty}</span>
+          <button onclick="changeQty(${i.id},1)" class="w-7 h-7 rounded-full flex items-center justify-center text-bark font-bold hover:bg-gold hover:text-white transition">+</button>
+        </div>
+        <button onclick="removeFromCart(${i.id})" class="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+      </div>
+    </div>`;
+  }).join('');
+  
+  document.getElementById('cart-total').textContent = '₦' + getCartTotal().toLocaleString();
+  lucide.createIcons();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (item) { 
+    item.qty += delta; 
+    if (item.qty <= 0) removeFromCart(id); 
+    else { 
+      saveCart();
+      updateCartBadge(); 
+      renderCart(); 
+    } 
+  }
+}
+
+function renderCheckout() {
+  document.getElementById('checkout-items').innerHTML = cart.map(i => {
+    const p = products.find(x => x.id === i.id);
+    return `<div class="flex justify-between text-sm"><span>${p.name} × ${i.qty}</span><span>₦${(p.price*i.qty).toLocaleString()}</span></div>`;
+  }).join('');
+  updateShippingFee();
+}
+
+function getShippingFee() {
+  const state = document.getElementById('co-state').value;
+  const total = getCartTotal();
+  if (total >= 100000) return 0;
+  if (state === 'Lagos') return 5000;
+  if (state === '') return 0;
+  return 6500;
+}
+
+function updateShippingFee() {
+  const subtotal = getCartTotal();
+  const shipping = getShippingFee();
+  const state = document.getElementById('co-state').value;
+  document.getElementById('checkout-subtotal').textContent = '₦' + subtotal.toLocaleString();
+  if (shipping === 0 && state) {
+    document.getElementById('checkout-shipping').innerHTML = '<span class="text-green-600 font-bold">FREE ✓</span>';
+  } else {
+    document.getElementById('checkout-shipping').textContent = shipping === 0 ? '₦0' : '₦' + shipping.toLocaleString();
+  }
+  document.getElementById('checkout-total').textContent = '₦' + (subtotal + shipping).toLocaleString();
+  renderPaymentMethods();
+}
+
+function renderPaymentMethods() {
+  const bankAccountName = window.elementSdk?.config?.bank_account_name || 'All Age Farms';
+  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '0123456789';
+  const bankName = window.elementSdk?.config?.bank_name || 'Zenith Bank';
+  const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+  
+  const total = getCartTotal() + getShippingFee();
+  
+  document.getElementById('payment-methods').innerHTML = `
+    <label class="flex items-start gap-3 p-4 border rounded-lg cursor-pointer hover:border-gold transition payment-method" onclick="selectPaymentMethod('bank')">
+      <input type="radio" name="payment" value="bank" class="accent-gold mt-1" checked>
+      <div class="flex-1">
+        <p class="font-bold text-bark">Bank Transfer</p>
+        <p class="text-xs text-bark/60">Direct transfer to our bank account</p>
+        <div class="bg-cream rounded-lg p-3 mt-3 text-xs text-bark space-y-1 bank-details">
+          <div class="font-medium">Account Details:</div>
+          <div><strong>Bank:</strong> ${bankName}</div>
+          <div><strong>Account Name:</strong> ${bankAccountName}</div>
+          <div class="flex items-center justify-between"><span><strong>Account Number:</strong> <span class="font-mono font-bold">${bankAccountNumber}</span></span><button type="button" class="copy-btn bg-gold/20 hover:bg-gold text-gold hover:text-white px-2 py-1 rounded text-xs font-medium transition" onclick="copyToClipboard('${bankAccountNumber}', event)"><i data-lucide="copy" class="w-3 h-3 inline mr-1"></i>Copy</button></div>
+          <div class="mt-2 pt-2 border-t"><strong>Amount:</strong> ₦${total.toLocaleString()}</div>
+          <div class="text-gold font-medium mt-2">⚠️ Send proof via WhatsApp: ${whatsappNumber}</div>
+        </div>
+      </div>
+    </label>
+    
+    <label class="flex items-start gap-3 p-4 border rounded-lg cursor-pointer hover:border-gold transition payment-method" onclick="selectPaymentMethod('pod')">
+      <input type="radio" name="payment" value="pod" class="accent-gold mt-1">
+      <div class="flex-1">
+        <p class="font-bold text-bark">Pay On Delivery (POD)</p>
+        <p class="text-xs text-bark/60">Cash payment on delivery - Lagos only</p>
+        <div class="bg-cream rounded-lg p-3 mt-3 text-xs text-bark space-y-1">
+          <div class="font-medium">How it works:</div>
+          <div>✓ Order placed & confirmed</div>
+          <div>✓ Product shipped to your address</div>
+          <div>✓ Pay cash to delivery agent</div>
+          <div class="mt-2 pt-2 border-t"><strong>Total to Pay:</strong> ₦${total.toLocaleString()}</div>
+          <div class="text-gold font-medium mt-2">Available in Lagos only</div>
+        </div>
+      </div>
+    </label>
+    
+    <label class="flex items-start gap-3 p-4 border rounded-lg cursor-pointer hover:border-gold transition payment-method" onclick="selectPaymentMethod('whatsapp')">
+      <input type="radio" name="payment" value="whatsapp" class="accent-gold mt-1">
+      <div class="flex-1">
+        <p class="font-bold text-bark">WhatsApp Payment</p>
+        <p class="text-xs text-bark/60">Send order details via WhatsApp</p>
+        <div class="bg-cream rounded-lg p-3 mt-3 text-xs text-bark space-y-1">
+          <div class="font-medium">How it works:</div>
+          <div>✓ Click "Place Order"</div>
+          <div>✓ Order details sent to WhatsApp</div>
+          <div>✓ Complete payment with details provided</div>
+          <div class="mt-2 pt-2 border-t"><strong>Total to Pay:</strong> ₦${total.toLocaleString()}</div>
+          <div class="text-gold font-medium mt-2">Fast & secure • Available nationwide</div>
+        </div>
+      </div>
+    </label>
+  `;
+  lucide.createIcons();
+}
+
+function selectPaymentMethod(method) {
+  document.querySelectorAll('input[name="payment"]').forEach(radio => {
+    radio.checked = radio.value === method;
+  });
+}
+
+function copyToClipboard(text, event) {
+  if (event) event.preventDefault();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Account number copied!');
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  showToast('Account number copied!');
+}
+
+function placeOrder() {
+  const name = document.getElementById('co-name').value;
+  const phone = document.getElementById('co-phone').value;
+  const email = document.getElementById('co-email').value;
+  const state = document.getElementById('co-state').value;
+  const address = document.getElementById('co-address').value;
+  const termsAgree = document.getElementById('terms-agree').checked;
+  
+  if (!name || !phone || !email || !state || !address) { showToast('Please fill in all delivery details'); return; }
+  if (!termsAgree) { showToast('Please accept Terms of Service & Return Policy'); return; }
+  
+  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycbyQKwUbBNrrhmCrBi1E-G9iOSKyqKZT4hHiAoV1TdRgpakKyqV1StXYATE3Qi3PmQg/exec';
+  if (!googleScriptUrl) { showToast('Configuration error: Google Apps Script URL not set'); return; }
+  
+  const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+  const total = getCartTotal() + getShippingFee();
+  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '0123456789';
+  const bankName = window.elementSdk?.config?.bank_name || 'Zenith Bank';
+  const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+  const contactEmail = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
+  
+  // Show processing state
+  const submitBtn = document.getElementById('place-order-btn');
+  const originalContent = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Processing Order...';
+  lucide.createIcons();
+  
+  // Send order to Google Sheet with email notification
+  const orderData = {
+    type: 'order',
+    name: name,
+    email: email,
+    phone: phone,
+    state: state,
+    address: address,
+    items: cart.map(i => {
+      const p = products.find(x => x.id === i.id);
+      return `${p.name} × ${i.qty}`;
+    }).join(', '),
+    subtotal: getCartTotal(),
+    shipping: getShippingFee(),
+    total: total,
+    paymentMethod: paymentMethod,
+    bankAccountNumber: bankAccountNumber,
+    bankName: bankName,
+    contactEmail: contactEmail,
+    timestamp: new Date().toISOString()
+  };
+  
+  fetch(googleScriptUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(orderData)
+  }).catch(e => console.log('Order sent'));
+  
+  // Send WhatsApp if selected
+  if (paymentMethod === 'whatsapp') {
+    const orderDetails = `Hello, I just placed an order on All Age Farms!
+
+📦 *ORDER DETAILS*
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+State: ${state}
+Address: ${address}
+
+🛒 *ITEMS:*
+${cart.map(i => {
+  const p = products.find(x => x.id === i.id);
+  return `• ${p.name} × ${i.qty} - ₦${(p.price*i.qty).toLocaleString()}`;
+}).join('\n')}
+
+💰 *PAYMENT SUMMARY*
+Subtotal: ₦${getCartTotal().toLocaleString()}
+Shipping: ${getShippingFee() === 0 ? 'FREE ✓' : '₦' + getShippingFee().toLocaleString()}
+*Total: ₦${total.toLocaleString()}*
+
+📱 I'm ready to make payment. Please provide payment details or bank account information.
+
+Thank you!`;
+    
+    const waLink = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(orderDetails)}`;
+    window.open(waLink, '_blank');
+  }
+  
+  // Show confirmation after a brief delay
+  setTimeout(() => {
+    document.getElementById('checkout-form-section').classList.add('hidden');
+    document.getElementById('order-confirmation').classList.remove('hidden');
+    document.getElementById('confirmation-message').textContent = `Your order has been received! Order #${Math.random().toString(36).substr(2, 9).toUpperCase()} | Total: ₦${total.toLocaleString()} | We'll contact you shortly.`;
+    
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    
+    setTimeout(() => {
+      navigate('home');
+      document.getElementById('checkout-form-section').classList.remove('hidden');
+      document.getElementById('order-confirmation').classList.add('hidden');
+      document.getElementById('co-name').value = '';
+      document.getElementById('co-phone').value = '';
+      document.getElementById('co-email').value = '';
+      document.getElementById('co-state').value = '';
+      document.getElementById('co-address').value = '';
+      document.getElementById('terms-agree').checked = false;
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalContent;
+    }, 5000);
+  }, 2000);
+}
+
+function submitContactForm(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('contact-name').value;
+  const email = document.getElementById('contact-email-input').value;
+  const phone = document.getElementById('contact-phone-input').value;
+  const address = document.getElementById('contact-address').value;
+  const message = document.getElementById('contact-message').value;
+  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycbx9MB_kPG_70B8l76c04RUrNoTDAuUx4pvAqWHtPKs3vnnkp42pXP3z1SbpVwSKMwB9OA/exec';
+  
+  if (!name || !email || !phone || !address || !message) {
+    showToast('Please fill in all fields');
+    return;
+  }
+  
+  if (!googleScriptUrl) {
+    showToast('Configuration error: Google Apps Script URL not set');
+    return;
+  }
+  
+  const submitBtn = document.getElementById('contact-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  
+  // Send contact message to Google Sheet
+  const contactData = {
+    type: 'contact',
+    name: name,
+    email: email,
+    phone: phone,
+    address: address,
+    message: message,
+    timestamp: new Date().toISOString()
+  };
+  
+  fetch(googleScriptUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(contactData)
+  }).then(() => {
+    showToast('Message sent successfully!');
+    document.getElementById('contact-form').reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }).catch(e => {
+    showToast('Message sent! We\'ll contact you soon.');
+    document.getElementById('contact-form').reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  });
+}
+
+function updateContactInfo() {
+  document.getElementById('contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com ';
+  document.getElementById('contact-phone').textContent = window.elementSdk?.config?.contact_phone || '+234 XXX XXX XXX';
+  document.getElementById('contact-whatsapp').textContent = window.elementSdk?.config?.whatsapp_number || '+234 XXX XXX XXX';
+}
+
+function updateTrackInfo() {
+  // Track page info setup
+}
+
+function trackViaEmail() {
+  window.open(`mailto:${window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com '}?subject=Track My Order`, '_blank');
+}
+
+function trackViaWhatsApp() {
+  const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+  const waLink = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=Hi, I would like to track my order.`;
+  window.open(waLink, '_blank');
+}
+
+// Carousel
+function goToSlide(n) {
+  document.querySelectorAll('.carousel-slide').forEach((s, i) => { s.style.opacity = i === n ? '1' : '0'; });
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => { d.style.background = i === n ? '#c8860a' : 'rgba(255,255,255,0.6)'; });
+  currentSlide = n;
+}
+
+setInterval(() => { goToSlide((currentSlide + 1) % 3); }, 5000);
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+renderHomeProducts();
+goToSlide(0);
+lucide.createIcons();
+loadCart();
+
+window.addEventListener('load', () => {
+  const updateWhatsAppLink = () => {
+    const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+    const cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
+    document.getElementById('whatsapp-link').href = `https://wa.me/${cleanNumber}`;
+    document.getElementById('whatsapp-link').textContent = whatsappNumber;
+  };
+  updateWhatsAppLink();
+});
+
+const defaultConfig = {
+  site_title: 'All Age Farms',
+  hero_heading_1: 'Premium Smoked Catfish',
+  hero_heading_2: 'Fresh Goat Meat & Beef',
+  hero_heading_3: 'Export Quality Products',
+  bank_account_name: 'All Age Farms',
+  bank_account_number: '0123456789',
+  bank_name: 'Zenith Bank',
+  whatsapp_number: '+2348134488089',
+  contact_email: 'info@allageforms.com',
+  contact_phone: '+2348134488089',
+  google_apps_script_url: '',
+  background_color: '#fdf8f0',
+  surface_color: '#ffffff',
+  text_color: '#3d2b1f',
+  primary_action_color: '#1a3a2a',
+  secondary_action_color: '#c8860a',
+  font_family: 'DM Sans',
+  font_size: 16
+};
+
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async (config) => {
+    document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+    document.getElementById('hero-h1').textContent = config.hero_heading_1 || defaultConfig.hero_heading_1;
+    document.getElementById('hero-h2').textContent = config.hero_heading_2 || defaultConfig.hero_heading_2;
+    document.getElementById('hero-h3').textContent = config.hero_heading_3 || defaultConfig.hero_heading_3;
+    document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+    const font = config.font_family || defaultConfig.font_family;
+    document.body.style.fontFamily = `${font}, sans-serif`;
+    const size = config.font_size || defaultConfig.font_size;
+    document.body.style.fontSize = size + 'px';
+  },
+  mapToCapabilities: (config) => ({
+    recolorables: [
+      { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+      { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+      { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+    ],
+    borderables: [],
+    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
+  }),
+  mapToEditPanelValues: (config) => new Map([
+    ['site_title', config.site_title || defaultConfig.site_title],
+    ['hero_heading_1', config.hero_heading_1 || defaultConfig.hero_heading_1],
+    ['hero_heading_2', config.hero_heading_2 || defaultConfig.hero_heading_2],
+    ['hero_heading_3', config.hero_heading_3 || defaultConfig.hero_heading_3],
+    ['bank_account_name', config.bank_account_name || defaultConfig.bank_account_name],
+    ['bank_account_number', config.bank_account_number || defaultConfig.bank_account_number],
+    ['bank_name', config.bank_name || defaultConfig.bank_name],
+    ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+    ['contact_email', config.contact_email || defaultConfig.contact_email],
+    ['contact_phone', config.contact_phone || defaultConfig.contact_phone],
+    ['google_apps_script_url', config.google_apps_script_url || defaultConfig.google_apps_script_url],
+  ])
+});
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fb50dea431a2050',t:'MTc3ODcxMDg2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
