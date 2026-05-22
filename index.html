@@ -54,49 +54,56 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-cream font-body">
-  <div class="app-wrapper"><!-- Utility Header -->
+  <div class="app-wrapper">
+   <!-- Utility Header -->
    <div class="bg-forest text-white py-2 text-xs md:text-sm font-medium tracking-wide">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between flex-wrap gap-2">
-     <div class="flex-1 text-center md:text-left">
-      <i data-lucide="truck" class="inline w-3.5 h-3.5 mr-1"></i> FREE DELIVERY on orders above ₦100,000 | Lagos &amp; Nationwide
+     <div class="flex-1 text-center md:text-left"><i data-lucide="truck" class="inline w-3.5 h-3.5 mr-1"></i> FREE DELIVERY on orders above ₦100,000 | Lagos &amp; Nationwide
      </div>
-     <div class="flex gap-3">
-      <button onclick="navigate('help')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i>Help</button> <button onclick="navigate('track')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="package" class="w-3.5 h-3.5"></i>Track Order</button>
+     <div class="flex gap-3"><button onclick="navigate('help')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i>Help</button> <button onclick="navigate('track')" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full transition flex items-center gap-1"><i data-lucide="package" class="w-3.5 h-3.5"></i>Track Order</button>
      </div>
     </div>
    </div><!-- Main Header -->
    <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-     <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')"><img src="https://placehold.co/48x48/1a3a2a/c8860a?text=AAF" alt="All Age Farms Logo" class="w-10 h-10 rounded-full" id="logo-img" loading="lazy">
+     <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
+      <img src="logo/AAf logo.jpg" alt="All Age Farms Logo" class="w-10 h-10 rounded-full" id="logo-img" loading="lazy">
       <div>
        <h1 class="font-display font-bold text-forest text-lg leading-tight" id="site-title">All Age Farms</h1>
        <p class="text-[10px] text-sage tracking-widest uppercase">Premium Smoked Protein</p>
       </div>
      </div>
-     <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-bark"><a onclick="navigate('home')" class="cursor-pointer hover:text-gold transition">Home</a> <a onclick="navigate('products')" class="cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="cursor-pointer hover:text-gold transition">About</a> <a onclick="navigate('contact')" class="cursor-pointer hover:text-gold transition">Contact</a>
+     <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-bark">
+      <a onclick="navigate('home')" class="cursor-pointer hover:text-gold transition">Home</a> <a onclick="navigate('products')" class="cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="cursor-pointer hover:text-gold transition">About</a> <a onclick="navigate('contact')" class="cursor-pointer hover:text-gold transition">Contact</a>
      </nav>
      <div class="flex items-center gap-4">
-      <div class="hidden md:flex items-center bg-cream rounded-full px-4 py-2 gap-2 flex-1 max-w-xs"><i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
+      <div class="hidden md:flex items-center bg-cream rounded-full px-4 py-2 gap-2 flex-1 max-w-xs">
+       <i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
       </div><button class="md:hidden p-2 hover:bg-cream rounded-full transition" onclick="toggleSearch()"> <i data-lucide="search" class="w-5 h-5 text-bark"></i> </button> <button onclick="navigate('cart')" class="relative p-2 hover:bg-cream rounded-full transition"> <i data-lucide="shopping-cart" class="w-5 h-5 text-bark"></i> <span class="cart-badge hidden" id="cart-count">0</span> </button> <button class="md:hidden p-2" onclick="toggleMobileMenu()"> <i data-lucide="menu" class="w-6 h-6 text-bark"></i> </button>
      </div>
     </div><!-- Mobile Search -->
     <div id="mobile-search" class="hidden md:hidden bg-white border-b px-4 py-2">
-     <div class="flex items-center bg-cream rounded-full px-4 py-2 gap-2"><i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="mobile-search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
+     <div class="flex items-center bg-cream rounded-full px-4 py-2 gap-2">
+      <i data-lucide="search" class="w-4 h-4 text-bark/50"></i> <input id="mobile-search-input" type="text" class="bg-cream text-sm text-bark outline-none flex-1 placeholder-bark/40" placeholder="Search products..." oninput="searchProducts()">
      </div>
     </div><!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 py-3"><a onclick="navigate('home');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Home</a> <a onclick="navigate('products');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Products</a> <a onclick="navigate('about');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">About</a> <a onclick="navigate('contact');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 py-3">
+     <a onclick="navigate('home');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Home</a> <a onclick="navigate('products');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Products</a> <a onclick="navigate('about');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">About</a> <a onclick="navigate('contact');toggleMobileMenu()" class="block py-2 text-bark font-medium cursor-pointer">Contact</a>
     </div>
    </header><!-- Category Utility Bar -->
    <div class="bg-bark sticky top-[68px] z-40 shadow">
     <div class="max-w-7xl mx-auto flex items-center">
-     <div class="utility-scroll flex overflow-x-auto py-2 px-4 gap-1 flex-1"><button onclick="filterCategory('all')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-gold text-white transition cursor-pointer">All</button> <button onclick="filterCategory('stockfish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Stock Fish</button> <button onclick="filterCategory('cutlets')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Cutlets/Chunks</button> <button onclick="filterCategory('panla')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Panla Fish</button> <button onclick="filterCategory('meat')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Goat Meat</button> <button onclick="filterCategory('beef')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Beef</button> <button onclick="filterCategory('snails')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Snails</button> <button onclick="filterCategory('flour')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Flour/Pap</button> <button onclick="navigate('categories')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-gold border border-gold hover:bg-gold hover:text-white transition cursor-pointer">More ➜</button>
+     <div class="utility-scroll flex overflow-x-auto py-2 px-4 gap-1 flex-1">
+      <button onclick="filterCategory('all')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-gold text-white transition cursor-pointer">All</button> <button onclick="filterCategory('stock fish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Stock Fish</button> <button onclick="filterCategory('cutlets')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Cutlets/Chunks</button> <button onclick="filterCategory('panla')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Panla Fish</button> <button onclick="filterCategory('meat')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Goat Meat</button> <button onclick="filterCategory('beef')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Beef</button> <button onclick="filterCategory('snails')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Snails</button> <button onclick="filterCategory('flour')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Flour/Pap</button> <button onclick="navigate('categories')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-gold border border-gold hover:bg-gold hover:text-white transition cursor-pointer">More ➜</button>
      </div>
     </div>
    </div><!-- ===== HOME PAGE ===== -->
-   <div id="page-home" class="page active"><!-- Hero Carousel -->
+   <div id="page-home" class="page active">
+    <!-- Hero Carousel -->
     <section class="relative h-[400px] md:h-[500px] overflow-hidden">
      <div id="carousel" class="relative w-full h-full">
-      <div class="carousel-slide absolute inset-0 opacity-100" id="slide-0"><img src="https://placehold.co/1200x500/3d2b1f/fdf8f0?text=Premium+Smoked+Catfish" alt="Smoked Catfish" class="w-full h-full object-cover" id="hero-img-1" loading="lazy">
+      <div class="carousel-slide absolute inset-0 opacity-100" id="slide-0">
+       <img src="https://placehold.co/1200x500/3d2b1f/fdf8f0?text=Premium+Smoked+Catfish" alt="Smoked Catfish" class="w-full h-full object-cover" id="hero-img-1" loading="lazy">
        <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
         <div class="px-8 md:px-16 max-w-xl">
          <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h1">Premium Smoked Catfish</h2>
@@ -104,7 +111,8 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
         </div>
        </div>
       </div>
-      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-1"><img src="https://placehold.co/1200x500/5a7a5a/fdf8f0?text=Fresh+Goat+Meat+%26+Beef" alt="Goat Meat &amp; Beef" class="w-full h-full object-cover" id="hero-img-2" loading="lazy">
+      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-1">
+       <img src="https://placehold.co/1200x500/5a7a5a/fdf8f0?text=Fresh+Goat+Meat+%26+Beef" alt="Goat Meat &amp; Beef" class="w-full h-full object-cover" id="hero-img-2" loading="lazy">
        <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
         <div class="px-8 md:px-16 max-w-xl">
          <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h2">Fresh Goat Meat &amp; Beef</h2>
@@ -112,7 +120,8 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
         </div>
        </div>
       </div>
-      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-2"><img src="https://placehold.co/1200x500/c8860a/fdf8f0?text=Export+Quality+Products" alt="Export Quality" class="w-full h-full object-cover" id="hero-img-3" loading="lazy">
+      <div class="carousel-slide absolute inset-0 opacity-0" id="slide-2">
+       <img src="https://placehold.co/1200x500/c8860a/fdf8f0?text=Export+Quality+Products" alt="Export Quality" class="w-full h-full object-cover" id="hero-img-3" loading="lazy">
        <div class="absolute inset-0 bg-gradient-to-r from-forest/80 to-transparent flex items-center">
         <div class="px-8 md:px-16 max-w-xl">
          <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3" id="hero-h3">Export Quality Products</h2>
@@ -121,32 +130,38 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
        </div>
       </div>
      </div>
-     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"><button onclick="goToSlide(0)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="0"></button> <button onclick="goToSlide(1)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="1"></button> <button onclick="goToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="2"></button>
+     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <button onclick="goToSlide(0)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="0"></button> <button onclick="goToSlide(1)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="1"></button> <button onclick="goToSlide(2)" class="w-2.5 h-2.5 rounded-full bg-white/60 carousel-dot" data-dot="2"></button>
      </div>
     </section><!-- Featured Products -->
     <section class="max-w-7xl mx-auto px-4 py-12">
      <h3 class="font-display text-2xl md:text-3xl font-bold text-forest mb-8 text-center">Our Products</h3>
      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="home-products"></div>
-     <div class="text-center mt-8"><button onclick="navigate('products')" class="border-2 border-forest text-forest px-8 py-2.5 rounded-full font-medium hover:bg-forest hover:text-white transition">View All Products</button>
+     <div class="text-center mt-8">
+      <button onclick="navigate('products')" class="border-2 border-forest text-forest px-8 py-2.5 rounded-full font-medium hover:bg-forest hover:text-white transition">View All Products</button>
      </div>
     </section><!-- Why Choose Us -->
     <section class="bg-forest py-12">
      <div class="max-w-7xl mx-auto px-4 text-center">
       <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-8">Why All Age Farms?</h3>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="shield-check" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+        <i data-lucide="shield-check" class="w-8 h-8 text-gold mx-auto mb-3"></i>
         <h4 class="text-white font-bold mb-1">Hygiene First</h4>
         <p class="text-cream/70 text-sm">Strict food safety from processing to packaging</p>
        </div>
-       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="award" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+        <i data-lucide="award" class="w-8 h-8 text-gold mx-auto mb-3"></i>
         <h4 class="text-white font-bold mb-1">Consistent Quality</h4>
         <p class="text-cream/70 text-sm">Same great product every single time</p>
        </div>
-       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="truck" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+        <i data-lucide="truck" class="w-8 h-8 text-gold mx-auto mb-3"></i>
         <h4 class="text-white font-bold mb-1">Fast Delivery</h4>
         <p class="text-cream/70 text-sm">Lagos, Nationwide &amp; Export shipping</p>
        </div>
-       <div class="bg-white/10 backdrop-blur rounded-xl p-6"><i data-lucide="heart" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+       <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+        <i data-lucide="heart" class="w-8 h-8 text-gold mx-auto mb-3"></i>
         <h4 class="text-white font-bold mb-1">Traditional Taste</h4>
         <p class="text-cream/70 text-sm">Authentic Nigerian smoking methods</p>
        </div>
@@ -169,7 +184,8 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
    <div id="page-about" class="page">
     <section class="max-w-4xl mx-auto px-4 py-10">
      <h2 class="font-display text-3xl font-bold text-forest mb-6">About All Age Farms</h2>
-     <div class="bg-white rounded-2xl overflow-hidden shadow-sm mb-6"><img src="https://placehold.co/800x400/5a7a5a/fdf8f0?text=All+Age+Farms+Facility" alt="All Age Farms Facility" class="w-full h-64 object-cover" loading="lazy">
+     <div class="bg-white rounded-2xl overflow-hidden shadow-sm mb-6">
+      <img src="https://placehold.co/800x400/5a7a5a/fdf8f0?text=All+Age+Farms+Facility" alt="All Age Farms Facility" class="w-full h-64 object-cover" loading="lazy">
      </div>
      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm space-y-6 text-bark leading-relaxed">
       <div>
@@ -219,7 +235,7 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
       <div class="bg-white rounded-2xl p-6 shadow-sm space-y-4">
        <div>
         <h3 class="font-bold text-forest mb-2 flex items-center gap-2"><i data-lucide="mail" class="w-5 h-5 text-gold"></i>Email</h3>
-        <p class="text-bark" id="contact-email">allagefarmsltd@gmail.com </p>
+        <p class="text-bark" id="contact-email">allagefarmsltd@gmail.com</p>
        </div>
        <div>
         <h3 class="font-bold text-forest mb-2 flex items-center gap-2"><i data-lucide="phone" class="w-5 h-5 text-gold"></i>Phone</h3>
@@ -239,15 +255,20 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
       <div class="bg-white rounded-2xl p-6 shadow-sm">
        <h3 class="font-bold text-forest mb-4">Send us a Message</h3>
        <form id="contact-form" onsubmit="submitContactForm(event)" class="space-y-3">
-        <div><label class="text-sm text-bark font-medium">Name *</label> <input id="contact-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your name" required>
+        <div>
+         <label class="text-sm text-bark font-medium">Name *</label> <input id="contact-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your name" required>
         </div>
-        <div><label class="text-sm text-bark font-medium">Email *</label> <input id="contact-email-input" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your email" required>
+        <div>
+         <label class="text-sm text-bark font-medium">Email *</label> <input id="contact-email-input" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your email" required>
         </div>
-        <div><label class="text-sm text-bark font-medium">Phone Number *</label> <input id="contact-phone-input" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your phone number" required>
+        <div>
+         <label class="text-sm text-bark font-medium">Phone Number *</label> <input id="contact-phone-input" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" placeholder="Your phone number" required>
         </div>
-        <div><label class="text-sm text-bark font-medium">Address *</label> <textarea id="contact-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="2" placeholder="Your address" required></textarea>
+        <div>
+         <label class="text-sm text-bark font-medium">Address *</label> <textarea id="contact-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="2" placeholder="Your address" required></textarea>
         </div>
-        <div><label class="text-sm text-bark font-medium">Message *</label> <textarea id="contact-message" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="4" placeholder="Your message" required></textarea>
+        <div>
+         <label class="text-sm text-bark font-medium">Message *</label> <textarea id="contact-message" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="4" placeholder="Your message" required></textarea>
         </div><button type="submit" id="contact-submit-btn" class="w-full bg-forest text-white py-2 rounded-full font-medium hover:bg-forest/90 transition">Send Message</button>
        </form>
       </div>
@@ -285,13 +306,185 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
       </div>
      </div>
     </section>
+   </div><!-- ===== TERMS & CONDITIONS PAGE ===== -->
+   <div id="page-terms" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Terms of Service</h2>
+     <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm space-y-6 text-bark leading-relaxed divide-y">
+      <div>
+       <h3 class="font-display text-xl font-bold text-forest mb-3">1. Agreement to Terms</h3>
+       <p>By placing an order on the All Age Farms website or mobile platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not place an order. All Age Farms reserves the right to modify these terms at any time.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">2. Product Quality &amp; Description</h3>
+       <p>All products sold on our platform are hygienically processed, inspected, and meet strict food safety standards. Product descriptions, images, and prices are accurate to the best of our knowledge. However, slight variations in appearance may occur due to the natural and traditional nature of our smoking and drying processes.</p>
+       <p class="mt-3">We guarantee that all products are:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li>Fresh and properly processed</li>
+        <li>Free from contamination and foreign matter</li>
+        <li>Packaged in food-safe materials</li>
+        <li>Delivered within the stated delivery timeframe (unless delays occur beyond our control)</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">3. Order Placement &amp; Confirmation</h3>
+       <p>When you place an order, you are making an offer to purchase products from All Age Farms. Your order will be confirmed via email or WhatsApp. We reserve the right to refuse or cancel any order at our discretion, particularly if:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li>Product is out of stock</li>
+        <li>Delivery address is incomplete or undeliverable</li>
+        <li>Payment information is invalid</li>
+        <li>There are suspected fraudulent activities</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">4. Pricing &amp; Payment</h3>
+       <p>All prices are displayed in Nigerian Naira (₦) and are subject to change without notice. Prices shown at the time of checkout are the prices you will pay. Payment methods accepted include bank transfer, pay-on-delivery (Lagos only), and WhatsApp payment arrangements.</p>
+       <p class="mt-3"><strong>For Bank Transfer:</strong> Payment must be made within 24 hours of order confirmation. Orders are not processed until payment is received and verified. Please include your order reference in the transfer description.</p>
+       <p class="mt-3"><strong>For Pay-On-Delivery (POD):</strong> Available in Lagos only. Cash payment is collected by our delivery agent upon delivery.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">5. Delivery Terms</h3>
+       <p><strong>Lagos Delivery:</strong> ₦2,500 – ₦8,000 depending on location. Typical delivery time: 2-3 business days. FREE delivery on orders above ₦100,000.</p>
+       <p class="mt-3"><strong>Outside Lagos (Nationwide):</strong> Waybill ₦3,000 – ₦10,000 depending on location, quantity, and weight. Typical delivery time: 5-10 business days. FREE delivery on orders above ₦100,000.</p>
+       <p class="mt-3"><strong>Delivery Responsibility:</strong> All Age Farms is responsible for delivering your order to the address provided. Once the product is handed to you or your representative, it is your responsibility. We are not liable for damage or loss after delivery has been completed.</p>
+       <p class="mt-3">Delivery dates are estimates and not guaranteed. Delays may occur due to factors beyond our control (weather, traffic, carrier issues, etc.). We will notify you of any significant delays via WhatsApp or email.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">6. Cancellation Policy</h3>
+       <p>Orders can be cancelled <strong>before payment is received</strong>. Once payment is confirmed, orders cannot be cancelled unless the product is unavailable or out of stock.</p>
+       <p class="mt-3">To cancel an order, contact us via WhatsApp or email within 2 hours of placing your order.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">7. Customer Responsibilities</h3>
+       <p>Customers are responsible for:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li>Providing accurate and complete delivery information</li>
+        <li>Being available or arranging for someone to receive the delivery</li>
+        <li>Properly storing the product after delivery according to food safety guidelines</li>
+        <li>Inspecting the product immediately upon delivery</li>
+        <li>Reporting any issues within 24 hours of delivery</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">8. Limitation of Liability</h3>
+       <p>All Age Farms shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our platform or purchase of products, including but not limited to loss of profits, data, or business interruption.</p>
+       <p class="mt-3">Our total liability for any claim arising from these terms shall not exceed the amount you paid for the product in question.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">9. User Data &amp; Privacy</h3>
+       <p>By placing an order, you agree to provide accurate information. All personal data collected is used solely for order fulfillment, delivery, and customer communication. We do not share your data with third parties except as necessary for delivery purposes.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">10. Governing Law</h3>
+       <p>These Terms of Service are governed by the laws of the Federal Republic of Nigeria. Any disputes arising from these terms shall be resolved through informal negotiation or mediation.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">11. Contact Us</h3>
+       <p>For questions about these Terms of Service, please contact us:</p>
+       <p class="mt-2"><strong>Email:</strong> <span id="terms-contact-email">allagefarmsltd@gmail.com</span></p>
+       <p><strong>WhatsApp:</strong> <a href="#" id="terms-contact-wa" class="text-gold hover:underline">+2348134488089</a></p>
+      </div>
+     </div>
+    </section>
+   </div><!-- ===== RETURN POLICY PAGE ===== -->
+   <div id="page-returns" class="page">
+    <section class="max-w-4xl mx-auto px-4 py-10">
+     <h2 class="font-display text-3xl font-bold text-forest mb-6">Return &amp; Refund Policy</h2>
+     <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm space-y-6 text-bark leading-relaxed divide-y">
+      <div>
+       <h3 class="font-display text-xl font-bold text-forest mb-3">1. Our Commitment</h3>
+       <p>At All Age Farms, we stand behind the quality of every product we deliver. We are committed to ensuring that you receive fresh, hygienic, and properly processed products every time. If your order does not meet our standards, we will make it right.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">2. Eligibility for Returns &amp; Refunds</h3>
+       <p>Returns and refunds are available for orders that arrive:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li><strong>Damaged or spoiled:</strong> Product shows signs of spoilage, contamination, mold, or pest damage upon delivery</li>
+        <li><strong>Not as described:</strong> Product received does not match the order or product description (wrong item, wrong quantity, wrong size/grade)</li>
+        <li><strong>Defective:</strong> Product has visible defects not present in product images (excessive moisture, burning, foreign matter, etc.)</li>
+       </ul>
+       <p class="mt-3 text-sm italic">Note: Natural variations in product appearance due to traditional smoking methods are not grounds for return. We do not accept returns for change of mind or personal preference after inspection and acceptance of delivery.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">3. Return Process</h3>
+       <p><strong>Step 1: Report Within 24 Hours</strong></p>
+       <p class="text-sm mt-1">Contact us within 24 hours of receiving your order via WhatsApp or email if you believe your order is damaged, spoiled, or not as described.</p>
+       <p class="mt-4"><strong>Step 2: Provide Evidence</strong></p>
+       <p class="text-sm mt-1">Send clear photos or video of:</p>
+       <ul class="list-disc list-inside text-sm mt-1 space-y-1">
+        <li>The damaged or defective product</li>
+        <li>The original packaging (if damaged in transit)</li>
+        <li>Any visible defects, mold, or contamination</li>
+       </ul>
+       <p class="mt-4"><strong>Step 3: We Will Verify</strong></p>
+       <p class="text-sm mt-1">Our team will review your evidence and determine if the return qualifies. This typically takes 24-48 hours.</p>
+       <p class="mt-4"><strong>Step 4: Resolution</strong></p>
+       <p class="text-sm mt-1">If your claim is approved, we will either:</p>
+       <ul class="list-disc list-inside text-sm mt-1 space-y-1">
+        <li>Replace the product at no cost (shipped at our expense)</li>
+        <li>Issue a full refund to your original payment method</li>
+        <li>Offer a store credit for future orders</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">4. Refund Timeline</h3>
+       <p>Once a return is approved:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li><strong>Bank Transfer Refunds:</strong> 3-5 business days to appear in your account</li>
+        <li><strong>Pay-On-Delivery Refunds:</strong> Will be refunded via bank transfer within 5 business days of approval</li>
+        <li><strong>Replacements:</strong> New product will be shipped within 2 business days at no cost</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">5. Return Shipping</h3>
+       <p><strong>For Replacements:</strong> All Age Farms covers the cost of shipping the replacement product to you.</p>
+       <p class="mt-3"><strong>For Refunds:</strong> You are not required to return the damaged or defective product. We do not require physical return shipment for refunds. Simply provide photographic evidence of the issue.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">6. Non-Returnable Items</h3>
+       <p>The following are not eligible for returns or refunds:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li>Orders accepted and stored improperly by the customer</li>
+        <li>Orders partially consumed or tampered with</li>
+        <li>Products damaged due to customer negligence after delivery</li>
+        <li>Orders placed in error or change of mind (no defect)</li>
+        <li>Claims reported more than 24 hours after delivery</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">7. Storage &amp; Care Instructions</h3>
+       <p>To ensure product freshness and avoid spoilage after delivery:</p>
+       <ul class="list-disc list-inside mt-2 space-y-1 text-sm">
+        <li><strong>Refrigerate:</strong> Store smoked fish and meat in the refrigerator (0-4°C) for up to 2 weeks</li>
+        <li><strong>Freeze:</strong> For longer storage, freeze in airtight containers for up to 3 months</li>
+        <li><strong>Dry Storage:</strong> Flour and dried pap should be stored in cool, dry places away from moisture and pests</li>
+        <li><strong>Check Before Storage:</strong> Inspect products immediately upon delivery before placing in storage</li>
+       </ul>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">8. Bulk Orders</h3>
+       <p>For bulk orders (above 20kg), we recommend inspecting products in the presence of our delivery agent. Any issues must be reported immediately and documented with photos before the agent leaves.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">9. Exceptions &amp; Special Cases</h3>
+       <p>In rare cases where circumstances warrant special consideration (e.g., delivery failure, major contamination, multiple defects), we encourage customers to reach out. We will work with you to find a fair resolution.</p>
+      </div>
+      <div class="pt-6">
+       <h3 class="font-display text-xl font-bold text-forest mb-3">10. Contact Us for Return Issues</h3>
+       <p><strong>Email:</strong> <span id="return-contact-email">allagefarmsltd@gmail.com</span></p>
+       <p class="mt-2"><strong>WhatsApp:</strong> <a href="#" id="return-contact-wa" class="text-gold hover:underline">+2348134488089</a></p>
+       <p class="mt-2 text-sm">We're here to help! Contact us immediately if you have any issues with your order.</p>
+      </div>
+     </div>
+    </section>
    </div><!-- ===== TRACK ORDER PAGE ===== -->
    <div id="page-track" class="page">
     <section class="max-w-2xl mx-auto px-4 py-10">
      <h2 class="font-display text-3xl font-bold text-forest mb-6">Track Your Order</h2>
      <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
       <p class="text-bark mb-6">Select how you'd like to track your order:</p>
-      <div class="space-y-3"><button onclick="trackViaEmail()" class="w-full bg-forest text-white py-3 rounded-full font-medium hover:bg-forest/90 transition flex items-center justify-center gap-2"> <i data-lucide="mail" class="w-5 h-5"></i> Track via Email </button> <button onclick="trackViaWhatsApp()" class="w-full bg-green-600 text-white py-3 rounded-full font-medium hover:bg-green-700 transition flex items-center justify-center gap-2"> <i data-lucide="message-circle" class="w-5 h-5"></i> Track via WhatsApp </button>
+      <div class="space-y-3">
+       <button onclick="trackViaEmail()" class="w-full bg-forest text-white py-3 rounded-full font-medium hover:bg-forest/90 transition flex items-center justify-center gap-2"> <i data-lucide="mail" class="w-5 h-5"></i> Track via Email </button> <button onclick="trackViaWhatsApp()" class="w-full bg-green-600 text-white py-3 rounded-full font-medium hover:bg-green-700 transition flex items-center justify-center gap-2"> <i data-lucide="message-circle" class="w-5 h-5"></i> Track via WhatsApp </button>
       </div>
       <p class="text-bark/60 text-sm mt-6">We'll help you find your order details and provide updates on your delivery status.</p>
      </div>
@@ -302,24 +495,21 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
      <h2 class="font-display text-3xl font-bold text-forest mb-6">Shipping Rates</h2>
      <div class="space-y-4">
       <div class="bg-white rounded-xl p-6 shadow-sm">
-       <div class="flex items-center gap-3 mb-3">
-        <i data-lucide="map-pin" class="w-6 h-6 text-gold"></i>
+       <div class="flex items-center gap-3 mb-3"><i data-lucide="map-pin" class="w-6 h-6 text-gold"></i>
         <h3 class="font-bold text-lg text-forest">Lagos Delivery</h3>
        </div>
        <p class="text-bark">₦2,500 – ₦8,000 depending on location.</p>
        <p class="text-gold font-bold mt-2">FREE delivery for orders above ₦100,000</p>
       </div>
       <div class="bg-white rounded-xl p-6 shadow-sm">
-       <div class="flex items-center gap-3 mb-3">
-        <i data-lucide="truck" class="w-6 h-6 text-gold"></i>
+       <div class="flex items-center gap-3 mb-3"><i data-lucide="truck" class="w-6 h-6 text-gold"></i>
         <h3 class="font-bold text-lg text-forest">Outside Lagos (Nationwide)</h3>
        </div>
        <p class="text-bark">Waybill: ₦3,000 – ₦10,000 depending on location, quantity and weight of items.</p>
        <p class="text-gold font-bold mt-2">FREE delivery for orders above ₦100,000</p>
       </div>
       <div class="bg-white rounded-xl p-6 shadow-sm">
-       <div class="flex items-center gap-3 mb-3">
-        <i data-lucide="globe" class="w-6 h-6 text-gold"></i>
+       <div class="flex items-center gap-3 mb-3"><i data-lucide="globe" class="w-6 h-6 text-gold"></i>
         <h3 class="font-bold text-lg text-forest">Export (International)</h3>
        </div>
        <p class="text-bark">On request via WhatsApp. Contact us for custom quotes.</p>
@@ -331,11 +521,13 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
     <section class="max-w-4xl mx-auto px-4 py-10">
      <h2 class="font-display text-3xl font-bold text-forest mb-6">Your Cart</h2>
      <div id="cart-items" class="space-y-3"></div>
-     <div id="cart-empty" class="text-center py-12 text-bark/60"><i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
+     <div id="cart-empty" class="text-center py-12 text-bark/60">
+      <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
       <p>Your cart is empty</p>
      </div>
      <div id="cart-summary" class="hidden mt-6 bg-white rounded-xl p-6 shadow-sm">
-      <div class="flex justify-between text-lg font-bold text-forest mb-4"><span>Total:</span><span id="cart-total">₦0</span>
+      <div class="flex justify-between text-lg font-bold text-forest mb-4">
+       <span>Total:</span><span id="cart-total">₦0</span>
       </div><button onclick="navigate('checkout')" class="w-full bg-gold text-white py-3 rounded-full font-bold hover:bg-gold/90 transition">Proceed to Checkout</button>
      </div>
     </section>
@@ -343,29 +535,26 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
    <div id="page-checkout" class="page">
     <section class="max-w-5xl mx-auto px-4 py-10">
      <h2 class="font-display text-3xl font-bold text-forest mb-6">Checkout</h2>
-     <div id="order-confirmation" class="hidden bg-green-50 border-2 border-green-500 rounded-xl p-6 mb-6 text-center"><i data-lucide="check-circle" class="w-12 h-12 text-green-600 mx-auto mb-3"></i>
+     <div id="order-confirmation" class="hidden bg-green-50 border-2 border-green-500 rounded-xl p-6 mb-6 text-center">
+      <i data-lucide="check-circle" class="w-12 h-12 text-green-600 mx-auto mb-3"></i>
       <h3 class="font-bold text-green-700 text-lg mb-2">Order Placed Successfully! 🎉</h3>
       <p class="text-green-600 mb-4" id="confirmation-message"></p><button onclick="navigate('home')" class="bg-green-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition">Continue Shopping</button>
      </div>
      <div id="checkout-form-section" class="grid md:grid-cols-3 gap-6">
-      <div class="md:col-span-2 space-y-6"><!-- Delivery Information -->
+      <div class="md:col-span-2 space-y-6">
+       <!-- Delivery Information -->
        <div class="bg-white rounded-xl p-6 shadow-sm">
         <h3 class="font-bold text-forest mb-4 flex items-center gap-2"><i data-lucide="truck" class="w-5 h-5 text-gold"></i>Delivery Information</h3>
         <form id="checkout-form" onsubmit="return false;" class="space-y-3">
-         <div>
-          <label for="co-name" class="text-sm text-bark font-medium">Full Name *</label><input id="co-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         <div><label for="co-name" class="text-sm text-bark font-medium">Full Name *</label><input id="co-name" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
          </div>
-         <div>
-          <label for="co-phone" class="text-sm text-bark font-medium">Phone Number *</label><input id="co-phone" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         <div><label for="co-phone" class="text-sm text-bark font-medium">Phone Number *</label><input id="co-phone" type="tel" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
          </div>
-         <div>
-          <label for="co-email" class="text-sm text-bark font-medium">Email Address *</label><input id="co-email" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
+         <div><label for="co-email" class="text-sm text-bark font-medium">Email Address *</label><input id="co-email" type="email" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" required>
          </div>
-         <div>
-          <label for="co-state" class="text-sm text-bark font-medium">State *</label> <select id="co-state" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" onchange="updateShippingFee()" required> <option value="">-- Select State --</option> <option value="Lagos">Lagos</option> <option value="Abia">Abia</option> <option value="Adamawa">Adamawa</option> <option value="Akwa Ibom">Akwa Ibom</option> <option value="Anambra">Anambra</option> <option value="Bauchi">Bauchi</option> <option value="Bayelsa">Bayelsa</option> <option value="Benue">Benue</option> <option value="Borno">Borno</option> <option value="Cross River">Cross River</option> <option value="Delta">Delta</option> <option value="Ebonyi">Ebonyi</option> <option value="Edo">Edo</option> <option value="Ekiti">Ekiti</option> <option value="Enugu">Enugu</option> <option value="Gombe">Gombe</option> <option value="Imo">Imo</option> <option value="Jigawa">Jigawa</option> <option value="Kaduna">Kaduna</option> <option value="Kano">Kano</option> <option value="Katsina">Katsina</option> <option value="Kebbi">Kebbi</option> <option value="Kogi">Kogi</option> <option value="Kwara">Kwara</option> <option value="Nasarawa">Nasarawa</option> <option value="Niger">Niger</option> <option value="Ogun">Ogun</option> <option value="Ondo">Ondo</option> <option value="Osun">Osun</option> <option value="Oyo">Oyo</option> <option value="Plateau">Plateau</option> <option value="Rivers">Rivers</option> <option value="Sokoto">Sokoto</option> <option value="Taraba">Taraba</option> <option value="Yobe">Yobe</option> <option value="Zamfara">Zamfara</option> <option value="FCT Abuja">FCT Abuja</option> </select>
+         <div><label for="co-state" class="text-sm text-bark font-medium">State *</label> <select id="co-state" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" onchange="updateShippingFee()" required> <option value="">-- Select State --</option> <option value="Lagos">Lagos</option> <option value="Abia">Abia</option> <option value="Adamawa">Adamawa</option> <option value="Akwa Ibom">Akwa Ibom</option> <option value="Anambra">Anambra</option> <option value="Bauchi">Bauchi</option> <option value="Bayelsa">Bayelsa</option> <option value="Benue">Benue</option> <option value="Borno">Borno</option> <option value="Cross River">Cross River</option> <option value="Delta">Delta</option> <option value="Ebonyi">Ebonyi</option> <option value="Edo">Edo</option> <option value="Ekiti">Ekiti</option> <option value="Enugu">Enugu</option> <option value="Gombe">Gombe</option> <option value="Imo">Imo</option> <option value="Jigawa">Jigawa</option> <option value="Kaduna">Kaduna</option> <option value="Kano">Kano</option> <option value="Katsina">Katsina</option> <option value="Kebbi">Kebbi</option> <option value="Kogi">Kogi</option> <option value="Kwara">Kwara</option> <option value="Nasarawa">Nasarawa</option> <option value="Niger">Niger</option> <option value="Ogun">Ogun</option> <option value="Ondo">Ondo</option> <option value="Osun">Osun</option> <option value="Oyo">Oyo</option> <option value="Plateau">Plateau</option> <option value="Rivers">Rivers</option> <option value="Sokoto">Sokoto</option> <option value="Taraba">Taraba</option> <option value="Yobe">Yobe</option> <option value="Zamfara">Zamfara</option> <option value="FCT Abuja">FCT Abuja</option> </select>
          </div>
-         <div>
-          <label for="co-address" class="text-sm text-bark font-medium">Delivery Address *</label><textarea id="co-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="3" required></textarea>
+         <div><label for="co-address" class="text-sm text-bark font-medium">Delivery Address *</label><textarea id="co-address" class="w-full border rounded-lg px-3 py-2 mt-1 text-sm" rows="3" required></textarea>
          </div>
         </form>
        </div><!-- Payment Methods -->
@@ -373,10 +562,11 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
         <h3 class="font-bold text-forest mb-4 flex items-center gap-2"><i data-lucide="credit-card" class="w-5 h-5 text-gold"></i>Payment Method</h3>
         <div id="payment-methods" class="space-y-3"></div>
        </div><!-- Terms & Conditions -->
-       <div class="bg-white rounded-xl p-6 shadow-sm"><label class="flex items-start gap-3 cursor-pointer"> <input id="terms-agree" type="checkbox" class="accent-gold mt-1" required>
+       <div class="bg-white rounded-xl p-6 shadow-sm">
+        <label class="flex items-start gap-3 cursor-pointer"> <input id="terms-agree" type="checkbox" class="accent-gold mt-1" required>
          <div class="flex-1">
           <p class="text-sm text-bark font-medium">I agree to the Terms of Service and Return Policy</p>
-          <p class="text-xs text-bark/60 mt-1">Our Terms of Service outline order policies, processing times, and terms. Our Return Policy states that damaged or incorrect orders can be replaced or refunded within 24 hours of delivery.</p>
+          <p class="text-xs text-bark/60 mt-1">By checking this box, you agree to our <button type="button" onclick="navigate('terms')" class="text-gold font-bold hover:underline">Terms of Service</button> and <button type="button" onclick="navigate('returns')" class="text-gold font-bold hover:underline">Return Policy</button></p>
          </div></label>
        </div>
       </div><!-- Order Summary -->
@@ -385,14 +575,13 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
         <h3 class="font-bold text-forest">Order Summary</h3>
         <div id="checkout-items" class="space-y-2 text-sm text-bark border-b pb-3"></div>
         <div class="space-y-2 text-sm">
-         <div class="flex justify-between">
-          <span class="text-bark/70">Subtotal:</span><span id="checkout-subtotal" class="font-medium">₦0</span>
+         <div class="flex justify-between"><span class="text-bark/70">Subtotal:</span><span id="checkout-subtotal" class="font-medium">₦0</span>
          </div>
-         <div class="flex justify-between">
-          <span class="text-bark/70">Shipping:</span><span id="checkout-shipping" class="font-medium">₦0</span>
+         <div class="flex justify-between"><span class="text-bark/70">Shipping:</span><span id="checkout-shipping" class="font-medium">₦0</span>
          </div>
         </div>
-        <div class="border-t pt-3 flex justify-between text-lg font-bold text-forest"><span>Total:</span><span id="checkout-total">₦0</span>
+        <div class="border-t pt-3 flex justify-between text-lg font-bold text-forest">
+         <span>Total:</span><span id="checkout-total">₦0</span>
         </div><button onclick="placeOrder()" class="w-full bg-forest text-white py-3 rounded-full font-bold hover:bg-forest/90 transition flex items-center justify-center gap-2" id="place-order-btn"> <i data-lucide="check" class="w-5 h-5"></i> Place Order </button>
        </div>
       </div>
@@ -404,15 +593,16 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
      <div>
       <h4 class="font-display text-lg font-bold text-white mb-3">All Age Farms</h4>
       <p class="text-sm">Premium smoked &amp; dried protein. Registered 2023. Serving homes, restaurants &amp; export markets.</p>
-      <div class="flex gap-3 mt-4"><a href="https://www.instagram.com/allage_farms?igsh=MXhlbmhwanllZHRyNQ==" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition"><i data-lucide="instagram" class="w-4 h-4 text-white"></i></a> <a href="https://www.tiktok.com/@allage_farms?_r=1&_t=ZS-968wFssiaMn" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition">
-        <svg class="w-4 h-4 text-white" viewbox="0 0 24 24" fill="currentColor">
-         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v13.67a2.4 2.4 0 1 1-4.77-1.42v-3.88a6.67 6.67 0 1 0 8.82 7.64V9.24a8.05 8.05 0 0 0 3.4.6v-3.15" />
+      <div class="flex gap-3 mt-4">
+       <a href="https://www.instagram.com/allage_farms?igsh=MXhlbmhwanllZHRyNQ==" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition"><i data-lucide="instagram" class="w-4 h-4 text-white"></i></a> <a href="https://www.tiktok.com/@allage_farms?_r=1&_t=ZS-968wFssiaMn" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition">
+        <svg class="w-4 h-4 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v13.67a2.4 2.4 0 1 1-4.77-1.42v-3.88a6.67 6.67 0 1 0 8.82 7.64V9.24a8.05 8.05 0 0 0 3.4.6v-3.15" />
         </svg></a> <a href="https://www.facebook.com/share/14fBmnkhczi/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition"><i data-lucide="facebook" class="w-4 h-4 text-white"></i></a>
       </div>
      </div>
      <div>
       <h4 class="font-bold text-white mb-3">Quick Links</h4>
-      <div class="space-y-1.5 text-sm"><a onclick="navigate('products')" class="block cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="block cursor-pointer hover:text-gold transition">About Us</a> <a onclick="navigate('contact')" class="block cursor-pointer hover:text-gold transition">Contact</a> <a onclick="navigate('help')" class="block cursor-pointer hover:text-gold transition">Help &amp; FAQs</a>
+      <div class="space-y-1.5 text-sm">
+       <a onclick="navigate('products')" class="block cursor-pointer hover:text-gold transition">Products</a> <a onclick="navigate('about')" class="block cursor-pointer hover:text-gold transition">About Us</a> <a onclick="navigate('contact')" class="block cursor-pointer hover:text-gold transition">Contact</a> <a onclick="navigate('help')" class="block cursor-pointer hover:text-gold transition">Help &amp; FAQs</a> <a onclick="navigate('terms')" class="block cursor-pointer hover:text-gold transition">Terms of Service</a> <a onclick="navigate('returns')" class="block cursor-pointer hover:text-gold transition">Return Policy</a>
       </div>
      </div>
      <div>
@@ -430,14 +620,14 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
   <script>
 // Products data
 const products = [
-  { id: 1, name: '500g stockfish ears', category: 'stock fish', price: 5500, unit: '500 g', img: 'Stock Fish/500g stock fish ears.jpeg' },
-  { id: 2, name: '500g stockfish Apama heads', category: 'stock fish', price: 10000, unit: '500 g', img: 'Stock Fish/500g stock fish head.jpeg' },
-  { id: 3, name: 'Smoked Catfish (Large)', category: 'catfish', price: 9000, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Catfish+Large' },
+  { id: 1, name: '500g stockfish ears', category: 'stock fish', price: 5500, unit: 'per 500g', img: 'Stock Fish/500g stock fish ears.jpeg' },
+  { id: 2, name: '500g stockfish Apama heads', category: 'stock fish', price: 10000, unit: 'per 500g', img: 'Stock Fish/500g stock fish head.jpeg' },
+  { id: 3, name: '1kg Stock fish cutlet', category: 'stock fish', price: 38000, unit: 'per 1kg', img: 'Stock Fish/1kg Stock fish cutlet.jpeg' },
   { id: 4, name: 'Smoked Catfish (Jumbo)', category: 'catfish', price: 12000, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Catfish+Jumbo' },
   { id: 5, name: 'Oven Dried Catfish (Small)', category: 'catfish', price: 6000, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+S' },
   { id: 6, name: 'Oven Dried Catfish (Medium)', category: 'catfish', price: 7500, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+M' },
   { id: 7, name: 'Oven Dried Catfish (Large)', category: 'catfish', price: 9500, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Dried+Catfish+L' },
-  { id: 8, name: 'Cutlets / Chunks', category: 'cutlets', price: 6500, unit: 'per kg', img: 'https://placehold.co/400x400/c8860a/fdf8f0?text=Cutlets' },
+  { id: 8, name: 'Cutlets / Chunks', category: 'cutlets', price: 38000, unit: 'per kg', img: '' },
   { id: 9, name: 'Smoked Panla Fish', category: 'panla', price: 5000, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Smoked+Panla' },
   { id: 10, name: 'Semi Dried Panla Fish', category: 'panla', price: 4500, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Semi+Dried+Panla' },
   { id: 11, name: 'Panla Fillets', category: 'panla', price: 6000, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Panla+Fillets' },
@@ -448,8 +638,8 @@ const products = [
 ];
 
 const categories = [
-  { id: 'stock fish', name: 'stock fish', img: 'Stock Fish/500g stock fish ears.jpeg' },
-  { id: 'cutlets', name: 'Cutlets / Chunks', img: 'https://placehold.co/400x300/c8860a/fdf8f0?text=Cutlets' },
+  { id: 'stock fish', name: 'Stock Fish', img: 'Stock Fish/500g stock fish ears.jpeg' },
+  { id: 'cutlets', name: 'Cutlets / Chunks', img: 'Stock Fish/1kg Stock fish cutlet.jpeg' },
   { id: 'panla', name: 'Panla Fish', img: 'https://placehold.co/400x300/1a3a2a/fdf8f0?text=Panla' },
   { id: 'meat', name: 'Goat Meat', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Goat+Meat' },
   { id: 'beef', name: 'Beef', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Beef' },
@@ -928,9 +1118,22 @@ function submitContactForm(event) {
 }
 
 function updateContactInfo() {
-  document.getElementById('contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com ';
-  document.getElementById('contact-phone').textContent = window.elementSdk?.config?.contact_phone || '+234 XXX XXX XXX';
-  document.getElementById('contact-whatsapp').textContent = window.elementSdk?.config?.whatsapp_number || '+234 XXX XXX XXX';
+  document.getElementById('contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
+  document.getElementById('contact-phone').textContent = window.elementSdk?.config?.contact_phone || '+2348134488089';
+  document.getElementById('contact-whatsapp').textContent = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+  
+  // Update Terms & Returns pages
+  document.getElementById('terms-contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
+  document.getElementById('return-contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
+  
+  const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
+  const cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
+  
+  document.getElementById('terms-contact-wa').href = `https://wa.me/${cleanNumber}`;
+  document.getElementById('terms-contact-wa').textContent = whatsappNumber;
+  
+  document.getElementById('return-contact-wa').href = `https://wa.me/${cleanNumber}`;
+  document.getElementById('return-contact-wa').textContent = whatsappNumber;
 }
 
 function updateTrackInfo() {
@@ -938,7 +1141,7 @@ function updateTrackInfo() {
 }
 
 function trackViaEmail() {
-  window.open(`mailto:${window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com '}?subject=Track My Order`, '_blank');
+  window.open(`mailto:${window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com'}?subject=Track My Order`, '_blank');
 }
 
 function trackViaWhatsApp() {
@@ -975,6 +1178,7 @@ window.addEventListener('load', () => {
     document.getElementById('whatsapp-link').textContent = whatsappNumber;
   };
   updateWhatsAppLink();
+  updateContactInfo();
 });
 
 const defaultConfig = {
@@ -986,7 +1190,7 @@ const defaultConfig = {
   bank_account_number: '0123456789',
   bank_name: 'Zenith Bank',
   whatsapp_number: '+2348134488089',
-  contact_email: 'info@allageforms.com',
+  contact_email: 'allagefarmsltd@gmail.com',
   contact_phone: '+2348134488089',
   google_apps_script_url: '',
   background_color: '#fdf8f0',
@@ -1038,5 +1242,5 @@ window.elementSdk.init({
   ])
 });
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fb50dea431a2050',t:'MTc3ODcxMDg2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ffcfc11884bd494',t:'MTc3OTQ2NTExMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
