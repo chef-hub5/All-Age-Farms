@@ -882,8 +882,8 @@ function updateShippingFee() {
 
 function renderPaymentMethods() {
   const bankAccountName = window.elementSdk?.config?.bank_account_name || 'All Age Farms';
-  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '0123456789';
-  const bankName = window.elementSdk?.config?.bank_name || 'Zenith Bank';
+  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '1013068111';
+  const bankName = window.elementSdk?.config?.bank_name || 'Keystone Bank';
   const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
   
   const total = getCartTotal() + getShippingFee();
@@ -985,8 +985,8 @@ function placeOrder() {
   
   const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
   const total = getCartTotal() + getShippingFee();
-  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '0123456789';
-  const bankName = window.elementSdk?.config?.bank_name || 'Zenith Bank';
+  const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '1013068111';
+  const bankName = window.elementSdk?.config?.bank_name || 'Keystone Bank';
   const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
   const contactEmail = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
   
@@ -1205,8 +1205,8 @@ const defaultConfig = {
   hero_heading_2: 'Fresh Goat Meat & Beef',
   hero_heading_3: 'Export Quality Products',
   bank_account_name: 'All Age Farms',
-  bank_account_number: '0123456789',
-  bank_name: 'Zenith Bank',
+  bank_account_number: '1013068111',
+  bank_name: 'Keystone Bank',
   whatsapp_number: '+2348134488089',
   contact_email: 'allagefarmsltd@gmail.com',
   contact_phone: '+2348134488089',
