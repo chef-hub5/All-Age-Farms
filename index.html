@@ -94,7 +94,7 @@ textarea, input, select { max-width: 100%; word-wrap: break-word; }
    <div class="bg-bark sticky top-[68px] z-40 shadow">
     <div class="max-w-7xl mx-auto flex items-center">
      <div class="utility-scroll flex overflow-x-auto py-2 px-4 gap-1 flex-1">
-      <button onclick="filterCategory('all')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-gold text-white transition cursor-pointer">All</button> <button onclick="filterCategory('catfish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">CatFish</button> <button onclick="filterCategory('stock fish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Stock Fish</button> <button onclick="filterCategory('cutlets')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Cutlets/Chunks</button> <button onclick="filterCategory('panla')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Panla Fish</button> <button onclick="filterCategory('meat')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Goat Meat</button> <button onclick="filterCategory('beef')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Beef</button> <button onclick="filterCategory('snails')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Snails</button> <button onclick="filterCategory('flour')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Flour/Pap</button> <button onclick="navigate('categories')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-gold border border-gold hover:bg-gold hover:text-white transition cursor-pointer">More ➜</button>
+      <button onclick="filterCategory('all')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium bg-gold text-white transition cursor-pointer">All</button> <button onclick="filterCategory('catfish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">CatFish</button>  <button onclick="filterCategory('crayfish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">CrayFish</button> <button onclick="filterCategory('stock fish')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Stock Fish</button>  <button onclick="filterCategory('panla')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Panla Fish</button> <button onclick="filterCategory('meat')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Goat Meat</button> <button onclick="filterCategory('flour')" class="cat-btn whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-cream/80 hover:bg-gold hover:text-white transition cursor-pointer">Flour/Pap</button> <button onclick="navigate('categories')" class="whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium text-gold border border-gold hover:bg-gold hover:text-white transition cursor-pointer">More ➜</button>
      </div>
     </div>
    </div><!-- ===== HOME PAGE ===== -->
@@ -625,28 +625,43 @@ const products = [
   { id: 3, name: '1kg Stock fish cutlet', category: 'stock fish', price: 38000, unit: 'per kg', img: 'Stock Fish/1kg Stock fish cutlet.jpeg' },
   { id: 4, name: 'Catfish Cutlet Headless', category: 'catfish', price: 24000, unit: 'per kg', img: 'Stock Fish/Catfish Cutlet Headless.jpeg' },
   { id: 5, name: 'Catfish Cutlet', category: 'catfish', price: 24000, unit: 'per kg', img: 'Stock Fish/Catfish Cutlet.jpeg' },
-  { id: 6, name: 'Catfish Rings 6 Pieces', category: 'catfish', price: 7300, unit: 'per 500g', img: 'Stock Fish/Catfish Rings 6 Pieces.jpeg' },
+  { id: 6, name: 'Catfish Rings 6 Pieces', category: 'catfish', price: 7300, unit: 'per 500g', img: 'Stock Fish/Catfish RIngs 6 Pieces.jpeg' },
   { id: 7, name: 'Catfish Rings 12 Pieces', category: 'catfish', price: 14500, unit: 'per kg', img: 'Stock Fish/Catfish Rings 12 Pieces.jpeg' },
-  { id: 8, name: 'Cutlets / Chunks', category: 'cutlets', price: 38000, unit: 'per kg', img: '' },
-  { id: 9, name: 'Panla Fish 50 Pieces', category: 'panla', price: 15000, unit: 'per kg', img: 'Stock Fish/Panla Fish 50 Pieces.jpeg' },
-  { id: 10, name: 'Semi Dried Panla Fish', category: 'panla', price: 4500, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Semi+Dried+Panla' },
-  { id: 11, name: 'Panla Fillets', category: 'panla', price: 6000, unit: 'per kg', img: 'https://placehold.co/400x400/1a3a2a/fdf8f0?text=Panla+Fillets' },
-  { id: 12, name: 'Goat Meat (Smoked)', category: 'meat', price: 8500, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Goat+Meat' },
-  { id: 13, name: 'Beef (Smoked)', category: 'beef', price: 7500, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Beef' },
-  { id: 14, name: 'Snails (Smoked)', category: 'snails', price: 10000, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Snails' },
-  { id: 15, name: 'Flour Dried Pap', category: 'flour', price: 3500, unit: 'per kg', img: 'https://placehold.co/400x400/c8860a/fdf8f0?text=Dried+Pap' },
-  { id: 16, name: 'Flour Dried Pepper', category: 'pepper', price: 10000, unit: 'half paint', img: 'Stock Fish/Dried Yellow Pepper Half Paint.jpeg' },
+  { id: 8, name: 'A Quarter Carton Panla Fish', category: 'panla', price: 15000, unit: 'per quarter', img: 'Products/A Quarter Carton Panla Fish.jpeg' },
+  { id: 9, name: 'Half Carton Of Panla Fish', category: 'panla', price: 30000, unit: 'half carton', img: 'Products/Half Carton Of Panla Fish.jpeg' },
+  { id: 10, name: 'Panla Fish 50 Pieces', category: 'panla', price: 15000, unit: 'per kg', img: 'Stock Fish/Panla Fish 50 Pieces.jpeg' },
+  { id: 11, name: 'Crayfish', category: 'crayfish', price: 12000, unit: 'per 600g', img: 'Products/Crayfish.jpeg' },
+  { id: 12, name: 'Oron Crayfish', category: 'crayfish', price: 12000, unit: 'per bucket', img: 'Products/Oron Crayfish.jpeg' },
+  { id: 13, name: 'Blended Crayfish', category: 'crayfish', price: 12000, unit: 'per bucket', img: 'Products/Blended Crayfish.jpeg' },
+  { id: 14, name: 'Dehydrated Bitter leaf', category: 'leaf', price: 25000, unit: 'per kg', img: 'Products/Dehydrated Bitter leaf.jpeg' },
+  { id: 15, name: 'Dehydrated Bitter leaf', category: 'leaf', price: 13000, unit: 'per 500g', img: 'Products/Dehydrated Bitter leaf.jpeg' },
+  { id: 16, name: 'Dehydrated Bitter leaf', category: 'leaf', price: 7000, unit: 'per 200g', img: 'Products/Dehydrated Bitter leaf.jpeg' },
+  { id: 17, name: 'Dehydrated Scent leaf', category: 'leaf', price: 28000, unit: 'per kg', img: 'Products/Dehydrated Scent leaf.HEIC.jpeg' },
+  { id: 18, name: 'Dehydrated Scent leaf', category: 'leaf', price: 14000, unit: 'per 500g', img: 'Products/Dehydrated Scent leaf.HEIC.jpeg' },
+  { id: 19, name: 'Dehydrated Scent leaf', category: 'leaf', price: 7000, unit: 'per 200g', img: 'Products/Dehydrated Scent leaf.HEIC.jpeg' },
+  { id: 20, name: 'Dehydrated Uha leaves', category: 'leaf', price: 40000, unit: 'per kg', img: 'Products/Dehydrated Uha leaves.jpeg' },
+  { id: 21, name: 'Dehydrated Uha leaves', category: 'leaf', price: 20000, unit: 'per 500g', img: 'Products/Dehydrated Uha leaves.jpeg' },
+  { id: 22, name: 'Dehydrated Uha leaves', category: 'leaf', price: 10000, unit: 'per 200g', img: 'Products/Dehydrated Uha leaves.jpeg' },
+  { id: 23, name: 'Dehydrated Ukazi(Afang)', category: 'leaf', price: 40000, unit: 'per kg', img: 'Products/Dehydrated Ukazi(Afang).jpeg' },
+  { id: 24, name: 'Dehydrated Ukazi(Afang)', category: 'leaf', price: 20000, unit: 'per 500g', img: 'Products/Dehydrated Ukazi(Afang).jpeg' },
+  { id: 25, name: 'Dehydrated Ukazi(Afang)', category: 'leaf', price: 10000, unit: 'per 200g', img: 'Products/Dehydrated Ukazi(Afang).jpeg' },
+  { id: 26, name: 'Washed Ijebu Ponmo 50 Pieces', category: 'meat', price: 40000, unit: 'large size', img: 'Products/Washed Ijebu Ponmo 50 Pieces.jpeg' },
+  // { id: 27, name: 'Beef (Smoked)', category: 'beef', price: 7500, unit: 'per kg', img: 'https://placehold.co/400x400/3d2b1f/fdf8f0?text=Beef' },
+  // { id: 28, name: 'Snails (Smoked)', category: 'snails', price: 10000, unit: 'per kg', img: 'https://placehold.co/400x400/5a7a5a/fdf8f0?text=Snails' },
+  { id: 29, name: 'Pap Flour', category: 'flour', price: 4500, unit: 'per kg', img: 'Products/Pap Flour.PNG' },
+  { id: 30, name: 'Flour Dried Pepper', category: 'pepper', price: 10000, unit: 'half paint', img: 'Stock Fish/Dried Yellow Pepper Half Paint.jpeg' },
 ];
 
 const categories = [
   { id: 'stock fish', name: 'Stock Fish', img: 'Stock Fish/500g stock fish ears.jpeg' },
-  { id: 'cutlets', name: 'Cutlets / Chunks', img: 'Stock Fish/1kg Stock fish cutlet.jpeg' },
+  { id: 'crayfish', name: 'Crayfish', img: 'Products/Oron Crayfish.jpeg' },
   { id: 'catfish', name: 'Catfish', img: 'Stock Fish/Catfish Cutlet Headless.jpeg' },
-  { id: 'panla', name: 'Panla Fish', img: 'https://placehold.co/400x300/1a3a2a/fdf8f0?text=Panla' },
-  { id: 'meat', name: 'Goat Meat', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Goat+Meat' },
-  { id: 'beef', name: 'Beef', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Beef' },
-  { id: 'snails', name: 'Snails', img: 'https://placehold.co/400x300/5a7a5a/fdf8f0?text=Snails' },
-  { id: 'flour', name: 'Flour / Dried Pap', img: 'https://placehold.co/400x300/c8860a/fdf8f0?text=Flour+Pap' },
+  { id: 'panla', name: 'Panla Fish', img: 'Products/A Quarter Carton Panla Fish.jpeg' },
+  { id: 'meat', name: 'Goat Meat', img: 'Products/Washed Ijebu Ponmo 50 Pieces.jpeg' },
+  { id: 'leaf', name: 'Leaf', img: 'Products/Dehydrated Bitter leaf.jpeg' },
+  // { id: 'beef', name: 'Beef', img: 'https://placehold.co/400x300/3d2b1f/fdf8f0?text=Beef' },
+  // { id: 'snails', name: 'Snails', img: 'https://placehold.co/400x300/5a7a5a/fdf8f0?text=Snails' },
+  { id: 'flour', name: 'Flour / Dried Pap', img: 'Products/Pap Flour.PNG' },
   { id: 'pepper', name: 'Pepper', img: 'Stock Fish/Dried Yellow Pepper Half Paint.jpeg' },
 ];
 
@@ -965,7 +980,7 @@ function placeOrder() {
   if (!name || !phone || !email || !state || !address) { showToast('Please fill in all delivery details'); return; }
   if (!termsAgree) { showToast('Please accept Terms of Service & Return Policy'); return; }
   
-  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycbyQKwUbBNrrhmCrBi1E-G9iOSKyqKZT4hHiAoV1TdRgpakKyqV1StXYATE3Qi3PmQg/exec';
+  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycbzxnolICehaUsvb2mjIrdcJAJGo0FAHVS8ur8BJWdGVlJhOXCIdCGwVIq3KAS8LEx7r_g/exec';
   if (!googleScriptUrl) { showToast('Configuration error: Google Apps Script URL not set'); return; }
   
   const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
@@ -973,7 +988,7 @@ function placeOrder() {
   const bankAccountNumber = window.elementSdk?.config?.bank_account_number || '0123456789';
   const bankName = window.elementSdk?.config?.bank_name || 'Zenith Bank';
   const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
-  const contactEmail = window.elementSdk?.config?.contact_email || 'jayomoluwa@gmail.com';
+  const contactEmail = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
   
   // Show processing state
   const submitBtn = document.getElementById('place-order-btn');
@@ -1075,7 +1090,7 @@ function submitContactForm(event) {
   const phone = document.getElementById('contact-phone-input').value;
   const address = document.getElementById('contact-address').value;
   const message = document.getElementById('contact-message').value;
-  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycbx9MB_kPG_70B8l76c04RUrNoTDAuUx4pvAqWHtPKs3vnnkp42pXP3z1SbpVwSKMwB9OA/exec';
+  const googleScriptUrl = window.elementSdk?.config?.google_apps_script_url || 'https://script.google.com/macros/s/AKfycby-iMKeerHbCrQ4cO5HMKc3_bU2dVyvJH2R62i1k_ksb3brw4pRooEdpY9mNor_ak_d/exec';
   
   if (!name || !email || !phone || !address || !message) {
     showToast('Please fill in all fields');
@@ -1121,13 +1136,13 @@ function submitContactForm(event) {
 }
 
 function updateContactInfo() {
-  document.getElementById('contact-email').textContent = window.elementSdk?.config?.contact_email || 'jayomoluwa@gmail.com';
+  document.getElementById('contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
   document.getElementById('contact-phone').textContent = window.elementSdk?.config?.contact_phone || '+2348134488089';
   document.getElementById('contact-whatsapp').textContent = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
   
   // Update Terms & Returns pages
-  document.getElementById('terms-contact-email').textContent = window.elementSdk?.config?.contact_email || 'jayomoluwa@gmail.com';
-  document.getElementById('return-contact-email').textContent = window.elementSdk?.config?.contact_email || 'jayomoluwa@gmail.com';
+  document.getElementById('terms-contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
+  document.getElementById('return-contact-email').textContent = window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com';
   
   const whatsappNumber = window.elementSdk?.config?.whatsapp_number || '+2348134488089';
   const cleanNumber = whatsappNumber.replace(/[^0-9]/g, '');
@@ -1144,7 +1159,7 @@ function updateTrackInfo() {
 }
 
 function trackViaEmail() {
-  window.open(`mailto:${window.elementSdk?.config?.contact_email || 'jayomoluwa@gmail.com'}?subject=Track My Order`, '_blank');
+  window.open(`mailto:${window.elementSdk?.config?.contact_email || 'allagefarmsltd@gmail.com'}?subject=Track My Order`, '_blank');
 }
 
 function trackViaWhatsApp() {
